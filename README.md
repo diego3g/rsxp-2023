@@ -93,7 +93,7 @@ Mais uma vez, queremos agradecer a vocês por estarem dispostos a contribuir com
 
 - Só o tempo dirá... 👀
 
-## 😊 Contribuidores
+## Contribuidores 😊
 
 <a href="https://github.com/diego3g/rsxp-2023/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=diego3g/rsxp-2023" />
