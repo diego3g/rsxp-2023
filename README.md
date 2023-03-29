@@ -27,7 +27,9 @@ A *stack* foi escolhida pela comunidade durante a [live de kick-off](https://www
 
 ## Funcionalidades 🚀
 
-Até o momento, levando em consideração o prazo de 2 semanas *(Due: 11/04/2023)*, listamos algumas funcionalidades básicas que devemos entregar. Caso sobre tempo, podemos trabalhar em ideias *backlog*.
+Até o momento, levando em consideração o prazo de 2 semanas *(Due: 11/04/2023)*, listamos algumas funcionalidades básicas que devemos entregar. Caso sobre tempo, podemos trabalhar em funcionalidades secundárias, *backlog*. 
+
+### Funcionalidades 1.0 (MVP):
 
 - [ ]  **Comprar ingresso**
 Redirecionar o usuário para o [Sympla](https://www.sympla.com.br/) para efetuar a compra.
@@ -37,6 +39,8 @@ Uma vez que tenha o código localizador do ingresso emitido pelo Sympla, o usuá
 
 - [ ]  **Compartilhar ingresso nas redes sociais**
 Como uma forma de hypar o evento, o usuário poderá gerar uma imagem - *thumbnail* com sua foto para divulgar nas redes! `#VouNaRSXP! 🚀💜`
+
+### Funcionalidades 2.0:
 
 - [ ]  **Autenticação**
 - [ ]  **Sistema de convites**
