@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "rsxp-2023",
-    "slug": "rsxp-2023",
+    "name": "rsxp2023",
+    "slug": "rsxp2023",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
