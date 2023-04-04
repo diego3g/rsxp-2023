@@ -55,6 +55,9 @@ npm run android
 
 # Caso esteja usando iOS
 npm run ios
+
+# Caso esteja usando um dispositivo físico
+npm start
 ```
  
 ## Links rápidos ↗
