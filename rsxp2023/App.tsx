@@ -5,6 +5,7 @@ import {
   Roboto_400Regular,
   Roboto_700Bold,
 } from "@expo-google-fonts/roboto";
+import { Routes } from "./src/routes";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -16,9 +17,9 @@ export default function App() {
     return <ActivityIndicator />;
   }
   return (
-    <View className="flex-1 items-center justify-center">
-      <Text className="text-2xl font-regular">TESTE!!!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <>
+      {fontsLoaded ? <Routes /> : <ActivityIndicator />}
+      <StatusBar style="light" backgroundColor="transparent" translucent />
+    </>
   );
 }
