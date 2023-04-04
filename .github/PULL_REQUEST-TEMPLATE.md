@@ -25,9 +25,9 @@ Descreva os testes que você executou para verificar suas alterações. Forneça
 
 Exclua essa sessão caso não seja relevante.
 
-- Before
+- Antes:
 
-- After
+- Depois:
 
 # ✅ Checklist:
 
