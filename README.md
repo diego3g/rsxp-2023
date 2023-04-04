@@ -27,6 +27,36 @@ A _stack_ foi escolhida pela comunidade durante a [live de kick-off](https://www
 - [TypeScript](https://github.com/microsoft/TypeScript)
 - [Sympla API](https://www.sympla.com.br/api-doc/index.html)
 
+## Executando o projeto 🏁
+
+```bash
+# Baixe o projeto em sua máquina
+$ git clone https://github.com/diego3g/rsxp-2023
+# Acesse a pasta criada
+$ cd rsxp-2023
+
+# Inicie o docker do banco de dados (OBS: É necessário ter o docker instalado)
+$ cd server
+$ docker-compose up -d
+
+# Instale as dependências do backend
+$ npm i
+# Execute o backend
+$ npm run start:dev
+# O server irá ser executado em: <http://localhost:3333>
+
+# Volte para a pasta raiz
+$ cd ..
+
+# Instale as dependências do mobile
+$ cd mobile
+$ npm i
+# Execute o projeto mobile
+$ npm run start
+# Abra um emulador ou conecte um dispositivo físico
+# O app irá ser executado em: <http://localhost:19002>
+```
+
 ## Funcionalidades 🚀
 
 Até o momento, levando em consideração o prazo de 2 semanas _(Due: 11/04/2023)_, listamos algumas funcionalidades básicas que devemos entregar. Caso sobre tempo, podemos trabalhar em funcionalidades secundárias, _backlog_.
