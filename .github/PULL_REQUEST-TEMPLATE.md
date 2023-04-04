@@ -2,7 +2,9 @@
 
 Inclua um resumo das alterações e o problema relacionado. Inclua também motivação e contexto relevantes. Liste todas as dependências necessárias para essa alteração.
 
-Fixes # (issue)
+Você também pode mencionar alguma issue aberta e fazer um link com ela. [Referência](https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue#linking-a-pull-request-to-an-issue-using-a-keyword).
+
+Fixes #(numero_da_issue)
 
 ## 🛠️ Tipo da mudança
 
