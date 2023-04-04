@@ -34,7 +34,7 @@ cd apps/server
 # Copiar o arquivo com os dados de conexão e demais variáveis ambiente
 cp .env.example .env
 
-# Subir o serviço do PostgreSQL
+# Subir o serviço do PostgreSQL via docker (caso não tenha instalado o PostgreSQL em seu computador)
 docker compose up -d
 
 # Subir o servidor HTTP
