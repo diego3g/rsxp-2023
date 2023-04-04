@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  rsxp-database:
+    image: bitnami/postgresql
+    container_name: my-postgresql
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRESQL_USERNAME=postgres
+      - POSTGRESQL_PASSWORD=docker
+      - POSTGRESQL_DATABASE=rsxp
