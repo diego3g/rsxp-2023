@@ -1,28 +1,27 @@
-# 📋 Description
+# 📋 Descrição
 
-Please include a summary of the changes and the related issue. Please also include relevant motivation and context. List any dependencies that are required for this change.
+Inclua um resumo das alterações e o problema relacionado. Inclua também motivação e contexto relevantes. Liste todas as dependências necessárias para essa alteração.
 
 Fixes # (issue)
 
-## 🛠️ Type of change
+## 🛠️ Tipo da mudança
 
-Please delete options that are not relevant.
+Exclua as opções que não são relevantes.
 
-- [ ] Bug fix (non-breaking change which fixes an issue)
-- [ ] New feature (non-breaking change which adds functionality)
-- [ ] Breaking change (fix or feature that would cause existing functionality to not work as expected)
-- [ ] This change requires a documentation update
+- [ ] Bug fix 
+- [ ] Nova feature
+- [ ] Breaking change (correção ou recurso que faria com que uma funcionalidade existente não funcionasse conforme o esperado)
 
-# 🧪 How Has This Been Tested?
+# 🧪 Como isso foi testado?
 
-Please describe the tests that you ran to verify your changes. Provide instructions so we can reproduce. Please also list any relevant details for your test configuration
+Descreva os testes que você executou para verificar suas alterações. Forneça instruções para que possamos reproduzir. Liste também todos os detalhes relevantes para sua configuração de teste
 
 - [ ] Test A
 - [ ] Test B
 
 # 📷 Screenshots
 
-(in case of frontend)
+Exclua essa sessão caso não seja relevante.
 
 - Before
 
@@ -30,9 +29,9 @@ Please describe the tests that you ran to verify your changes. Provide instructi
 
 # ✅ Checklist:
 
-- [ ] My code follows the style guidelines of this project
-- [ ] I have performed a self-review of my code
-- [ ] I have made corresponding changes to the documentation
-- [ ] My changes generate no new warnings
-- [ ] I have added tests that prove my fix is effective or that my feature works
+- [ ] Meu código segue as diretrizes de estilo deste projeto
+- [ ] Realizei uma auto revisão do meu código
+- [ ] Fiz alterações correspondentes na documentação
+- [ ] Minhas alterações não geram novos alertas
+- [ ] Adicionei testes para minhas alterações
 
