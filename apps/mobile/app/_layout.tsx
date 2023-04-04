@@ -1,32 +1,17 @@
-import { Tabs } from 'expo-router'
-import colors from 'tailwindcss/colors'
+import { Stack } from 'expo-router'
 
-export default function TabsLayout() {
+export const unstable_settings = {
+  initialRouteName: '/tabs',
+}
+
+export default function AppLayout() {
   return (
-    <Tabs
+    <Stack
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: colors.purple[500],
-        tabBarInactiveTintColor: colors.gray[200],
-        tabBarStyle: {
-          backgroundColor: colors.zinc[800],
-          borderTopWidth: 0,
-        },
       }}
     >
-      <Tabs.Screen
-        name="index"
-        options={{
-          tabBarLabel: 'Ingresso',
-        }}
-      />
-
-      <Tabs.Screen
-        name="credential"
-        options={{
-          href: null,
-        }}
-      />
-    </Tabs>
+      <Stack.Screen name="credential" />
+    </Stack>
   )
 }
