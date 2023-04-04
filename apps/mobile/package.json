@@ -9,8 +9,10 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@expo-google-fonts/roboto": "^0.2.3",
     "@types/react": "~18.0.27",
     "expo": "~48.0.10",
+    "expo-font": "~11.1.1",
     "expo-status-bar": "~1.4.4",
     "nativewind": "2.0.11",
     "react": "18.2.0",
@@ -20,6 +22,7 @@
   "devDependencies": {
     "@babel/core": "^7.20.0",
     "@rocketseat/eslint-config": "1.2.0",
+    "@types/react-native": "^0.71.5",
     "eslint": "8.37.0",
     "tailwindcss": "3.3.1"
   },
