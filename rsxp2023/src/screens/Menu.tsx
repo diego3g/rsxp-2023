@@ -7,7 +7,7 @@ export function Menu() {
   const { navigate } = useNavigation();
   return (
     <View className="flex-1 px-8 pt-16 bg-background">
-      <TouchableOpacity onPress={() => navigate("home")} className="w-8">
+      <TouchableOpacity onPress={() => navigate("app")} className="w-8">
         <Feather name="x" size={30} color="#c4c4cc" />
       </TouchableOpacity>
 

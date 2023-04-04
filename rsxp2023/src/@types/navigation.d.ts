@@ -3,6 +3,7 @@ export declare global {
     interface RootParamList {
       menu: undefined;
       home: undefined;
+      app: undefined;
     }
   }
 }
