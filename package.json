@@ -1,0 +1,10 @@
+{
+  "name": "rsxp-2023",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Repositório do app do RS/XP 2023 construído pela comunidade da Rocketseat.",
+  "license": "MIT",
+  "workspaces": [
+    "apps/*"
+  ]
+}
