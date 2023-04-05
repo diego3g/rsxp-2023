@@ -1,10 +1,10 @@
 import { useSignUp, useSignIn } from '@clerk/clerk-expo'
 import React from 'react'
-import { Button, View } from 'react-native'
+import { Text, TouchableOpacity } from 'react-native'
 
 import * as AuthSession from 'expo-auth-session'
 
-const SignInWithOAuth = () => {
+export function SignInWithOAuthButton() {
   const { isLoaded, signIn, setSession } = useSignIn()
   const { signUp } = useSignUp()
   if (!isLoaded) return null
@@ -77,13 +77,11 @@ const SignInWithOAuth = () => {
   }
 
   return (
-    <View>
-      <Button
-        title="Sign in with Github"
-        onPress={handleSignInWithGithubPress}
-      />
-    </View>
+    <TouchableOpacity
+      className="rounded bg-slate-600 py-3 px-4"
+      onPress={handleSignInWithGithubPress}
+    >
+      <Text className="text-white uppercase">Sign in with Github</Text>
+    </TouchableOpacity>
   )
 }
-
-export default SignInWithOAuth
