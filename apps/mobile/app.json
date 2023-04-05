@@ -3,6 +3,7 @@
     "name": "rsxp",
     "slug": "rsxp",
     "version": "1.0.0",
+    "scheme": "rsxp",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
