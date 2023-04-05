@@ -19,7 +19,10 @@
     "noFallthroughCasesInSwitch": false,
     "paths": {
       "@prisma-db/*": [
-        "src/database/*",
+        "src/infrastructure/*",
+      ],
+      "@infrastructure/*": [
+        "src/infrastructure/*"
       ]
     }
   },
