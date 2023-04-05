@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@types/react": "~18.0.27",
+    "babel-plugin-inline-dotenv": "^1.7.0",
     "expo": "~48.0.10",
     "expo-status-bar": "~1.4.4",
     "nativewind": "2.0.11",
