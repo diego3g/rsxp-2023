@@ -14,9 +14,12 @@ export default function TabLayout() {
         },
       }}
     >
-      <Tabs.Screen name="index" options={{
-        tabBarLabel: 'Ingresso'
-      }} />
+      <Tabs.Screen
+        name="index"
+        options={{
+          tabBarLabel: 'Ingresso',
+        }}
+      />
     </Tabs>
   )
 }
