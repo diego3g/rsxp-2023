@@ -9,9 +9,12 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@clerk/clerk-expo": "^0.14.4",
     "@types/react": "~18.0.27",
     "babel-plugin-inline-dotenv": "^1.7.0",
     "expo": "~48.0.10",
+    "expo-auth-session": "^4.0.3",
+    "expo-random": "^13.1.1",
     "expo-status-bar": "~1.4.4",
     "nativewind": "2.0.11",
     "react": "18.2.0",
