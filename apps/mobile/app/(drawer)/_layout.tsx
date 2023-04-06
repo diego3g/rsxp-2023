@@ -4,7 +4,7 @@ import { QueryClientProvider } from '@tanstack/react-query'
 
 import { queryClient } from '../../src/lib/react-query'
 
-import CustomDrawerContent from './CustomDrawerContent'
+import CustomDrawerContent from '@/components/CustomDrawerContent'
 
 export default function DrawerLayout() {
   return (
@@ -17,7 +17,6 @@ export default function DrawerLayout() {
           drawerStyle: {
             width: '100%',
             backgroundColor: '#121214',
-            paddingHorizontal: 24,
           },
         }}
         drawerContent={(props) => <CustomDrawerContent {...props} />}
