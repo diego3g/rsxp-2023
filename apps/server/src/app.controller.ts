@@ -1,13 +1,5 @@
-import { Controller, Get } from '@nestjs/common';
-import { PrismaService } from './database/prisma.service';
-
-var x = 3
-
-const obj: { name: string } = {
-  age: 13
-}
-
-console.log(obj.age)
+import { Controller, Get } from '@nestjs/common'
+import { PrismaService } from './database/prisma.service'
 
 @Controller()
 export class AppController {
