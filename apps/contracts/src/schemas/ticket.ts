@@ -5,5 +5,6 @@ export const symplaTicketNumber = z.string()
 
 export const TicketSchema = z.object({
   id: z.string().uuid(),
+  userId: z.string(),
   symplaTicketNumber,
 });

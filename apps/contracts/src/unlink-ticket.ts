@@ -5,11 +5,8 @@ export const unlinkTicket = mutation({
   method: 'DELETE',
   path: '/tickets/link',
   responses: {
-    204: z.void(),
+    204: z.null(),
   },
   body: z.void(),
-  pathParams: z.object({
-    id: z.string().uuid(),
-  }),
   summary: 'Unlink authenticated user ticket',
 });
