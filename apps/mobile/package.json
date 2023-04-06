@@ -7,8 +7,8 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "lint": "eslint --ext .ts,.tsx ./src --no-error-on-unmatched-pattern",
-    "lint:fix": "eslint --ext .ts,.tsx ./src --no-error-on-unmatched-pattern --fix",
+    "lint": "eslint --ext .ts,.tsx . --no-error-on-unmatched-pattern",
+    "lint:fix": "eslint --ext .ts,.tsx . --no-error-on-unmatched-pattern --fix",
     "types:check": "tsc --noEmit --pretty"
   },
   "dependencies": {
