@@ -36,6 +36,6 @@ export class SymplaService {
       throw new Error(`[Sympla service] ${data.message}`)
     }
 
-    return { participant: data }
+    return { participant: data.data }
   }
 }
