@@ -1,7 +1,7 @@
 import { Drawer } from 'expo-router/drawer'
 import { StatusBar } from 'expo-status-bar'
 
-import CustomDrawerContent from '../components/CustomDrawerContent'
+import CustomDrawerContent from '@/components/CustomDrawerContent'
 
 export default function DrawerLayout() {
   return (
