@@ -6,6 +6,8 @@ on:
   push:
     paths:
       - 'apps/mobile/**'
+    branches:
+      - main
   pull_request:
     types: [opened, synchronize, reopened]
     paths:
