@@ -75,6 +75,9 @@ module.exports = {
       subtitle: 'Roboto_500Medium',
       body: 'Roboto_400Regular',
     },
+    height: {
+      26: '6.5rem',
+    },
   },
   plugins: [],
 }
