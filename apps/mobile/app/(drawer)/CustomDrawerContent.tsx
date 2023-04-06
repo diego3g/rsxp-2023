@@ -3,7 +3,7 @@ import {
   DrawerContentScrollView,
   DrawerContentComponentProps,
 } from '@react-navigation/drawer'
-// import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { useNavigation } from 'expo-router/src/useNavigation'
 import { DrawerActions } from '@react-navigation/routers'
 
@@ -18,14 +18,14 @@ import DrawerItem from '../components/DrawerItem'
 export default function CustomDrawerContent(
   props: DrawerContentComponentProps,
 ) {
-  // const insets = useSafeAreaInsets()
+  const insets = useSafeAreaInsets()
   const navigation = useNavigation()
 
   return (
     <View className="flex-1">
       <TouchableOpacity
         className="w-full h-26 pb-4"
-        style={{ paddingTop: 48 }}
+        style={{ paddingTop: insets.top + 10 }}
         activeOpacity={0.7}
         onPress={() => navigation.dispatch(DrawerActions.closeDrawer())}
       >

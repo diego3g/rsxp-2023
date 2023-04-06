@@ -1,10 +1,10 @@
+import React from 'react'
+import colors from 'tailwindcss/colors'
+
 import { Text, TouchableOpacity, View } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 import { SvgProps } from 'react-native-svg'
 import { Link } from 'expo-router'
-
-import colors from 'tailwindcss/colors'
-import React from 'react'
 
 type Props = {
   href: string
