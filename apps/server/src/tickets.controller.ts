@@ -38,7 +38,7 @@ export class TicketsController
 
   @TsRest(controllerContract.myTicket)
   async myTicket(): Promise<ResponseShapes['myTicket']> {
-    const ticket = await this.prisma.ticket.findFirst()
+    const ticket = await this.prisma.ticket.findFirstOrThrow()
 
     return { status: 200, body: { ticket } }
   }
