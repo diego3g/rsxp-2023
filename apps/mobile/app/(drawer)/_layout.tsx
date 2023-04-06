@@ -1,9 +1,10 @@
 import { Drawer } from 'expo-router/drawer'
 import { StatusBar } from 'expo-status-bar'
 
+import CustomDrawerContent from './CustomDrawerContent'
 import { DrawerHeader } from '../components/DrawerHeader'
 
-import CustomDrawerContent from './CustomDrawerContent'
+import theme from '../theme'
 
 export default function DrawerLayout() {
   return (
@@ -15,7 +16,7 @@ export default function DrawerLayout() {
           header: ({ options }) => <DrawerHeader title={options.title} />,
           drawerStyle: {
             width: '100%',
-            backgroundColor: '#121214',
+            backgroundColor: theme.colors.gray[900],
             paddingHorizontal: 24,
           },
         }}

@@ -25,7 +25,7 @@ export default function CustomDrawerContent(
     <View className="flex-1">
       <TouchableOpacity
         className="w-full h-26 pb-4"
-        style={{ paddingTop: insets.top + 10 }}
+        style={{ paddingTop: insets.top }}
         activeOpacity={0.7}
         onPress={() => navigation.dispatch(DrawerActions.closeDrawer())}
       >

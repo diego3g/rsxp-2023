@@ -1,9 +1,10 @@
 import { Text, TouchableOpacity, View } from 'react-native'
 import { useNavigation } from 'expo-router/src/useNavigation'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
-import colors from 'tailwindcss/colors'
 
 import { CaretLeft } from 'phosphor-react-native'
+
+import theme from '../theme'
 
 type StackHeaderProps = {
   title: string
@@ -16,13 +17,15 @@ export function DrawerHeader({ title }: StackHeaderProps) {
 
   return (
     <View
-      className="flex-row relative px-5 pb-6 items-center justify-center gap-4 bg-gray-900"
-      style={{ paddingTop: insents.top + 11 }}
+      className="flex-row px-5 pb-6 items-center justify-between gap-4 bg-gray-900"
+      style={{ paddingTop: insents.top }}
     >
-      <TouchableOpacity className="absolute left-5 top-14" onPress={goBack}>
-        <CaretLeft size={28} color={colors.gray[100]} />
+      <TouchableOpacity onPress={goBack}>
+        <CaretLeft size={28} color={theme.colors.gray[100]} />
       </TouchableOpacity>
       <Text className="text-base font-medium text-gray-100">{title}</Text>
+
+      <View className="w-9" />
     </View>
   )
 }
