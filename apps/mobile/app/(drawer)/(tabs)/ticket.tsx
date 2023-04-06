@@ -16,6 +16,11 @@ export default function Ticket() {
       <Link className="text-blue-500" href="credential">
         Acessar credencial
       </Link>
+      <View className="bg-gray-900 flex-1 items-center justify-center">
+        <Text className="text-gray-100 font-bold text-2xl font-heading">
+          Ingresso
+        </Text>
+      </View>
     </View>
   )
 }
