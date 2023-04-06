@@ -1,7 +1,7 @@
-import { Drawer } from "expo-router/drawer";
-import { StatusBar } from "expo-status-bar";
+import { Drawer } from 'expo-router/drawer'
+import { StatusBar } from 'expo-status-bar'
 
-import CustomDrawerContent from "./CustomDrawerContent";
+import CustomDrawerContent from './CustomDrawerContent'
 
 export default function DrawerLayout() {
   return (
@@ -14,7 +14,7 @@ export default function DrawerLayout() {
           drawerStyle: {
             width: '100%',
             backgroundColor: '#121214',
-            paddingHorizontal: 24
+            paddingHorizontal: 24,
           },
         }}
         drawerContent={(props) => <CustomDrawerContent {...props} />}
