@@ -7,11 +7,12 @@ import {
   Roboto_500Medium,
   Roboto_700Bold,
 } from '@expo-google-fonts/roboto'
-import { purple } from 'tailwindcss/colors'
+
 import { QueryClientProvider } from '@tanstack/react-query'
 import { queryClient } from '../../src/lib/react-query'
 
 import CustomDrawerContent from './CustomDrawerContent'
+import { colors } from '../../src/theme/colors.js'
 
 export default function DrawerLayout() {
   const [fontsLoaded] = useFonts({
@@ -22,8 +23,8 @@ export default function DrawerLayout() {
 
   if (!fontsLoaded) {
     return (
-      <View className="flex-1 items-center justify-center bg-gray-950">
-        <ActivityIndicator color={purple[600]} size="large" />
+      <View className="flex-1 items-center justify-center bg-zinc-900">
+        <ActivityIndicator color={colors.rocketseat.mid} size="large" />
       </View>
     )
   }
@@ -37,7 +38,7 @@ export default function DrawerLayout() {
           headerShown: false,
           drawerStyle: {
             width: '100%',
-            backgroundColor: '#121214',
+            backgroundColor: colors.gray[900],
             paddingHorizontal: 24,
           },
         }}
