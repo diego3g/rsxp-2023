@@ -23,6 +23,9 @@ module.exports = {
           950: '#09090A',
         },
       },
+      height: {
+        26: '6.5rem',
+      },
     },
   },
   plugins: [],

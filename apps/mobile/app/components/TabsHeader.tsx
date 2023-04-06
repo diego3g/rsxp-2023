@@ -1,11 +1,16 @@
 import { TouchableOpacity, View } from 'react-native'
 
+import { DrawerActions } from '@react-navigation/routers'
+import { useNavigation } from 'expo-router/src/useNavigation'
+
 import MenuIcon from '../assets/menu-icon.svg'
 import RSXPLogo from '../assets/rsxp-logo.svg'
 
 export function TabsHeader() {
+  const navigation = useNavigation()
+
   function handleOpenDrawerMenu() {
-    // create handler to open drawer menu
+    navigation.dispatch(DrawerActions.openDrawer())
   }
 
   return (

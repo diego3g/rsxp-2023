@@ -8,6 +8,7 @@
     "apps/*"
   ],
   "dependencies": {
+    "@react-navigation/drawer": "^6.6.2",
     "react-native-svg": "13.4.0"
   },
   "devDependencies": {

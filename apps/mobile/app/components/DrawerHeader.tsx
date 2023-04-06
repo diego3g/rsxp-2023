@@ -1,5 +1,5 @@
 import { Text, TouchableOpacity, View } from 'react-native'
-import { useNavigation } from 'expo-router'
+import { useNavigation } from 'expo-router/src/useNavigation'
 
 import BackIcon from '../assets/back-icon.svg'
 
@@ -7,7 +7,7 @@ type StackHeaderProps = {
   title: string
 }
 
-export function StackHeader({ title }: StackHeaderProps) {
+export function DrawerHeader({ title }: StackHeaderProps) {
   const { goBack } = useNavigation()
 
   return (
