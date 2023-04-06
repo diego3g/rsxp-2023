@@ -1,4 +1,6 @@
 import { Tabs } from 'expo-router'
+import { House, BookmarkSimple } from 'phosphor-react-native';
+
 import colors from 'tailwindcss/colors'
 
 export default function TabLayout() {
@@ -17,7 +19,20 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
+          tabBarLabel: 'O evento',
+          tabBarIcon: ({ color, size }) => (
+            <House color={color} size={size} />
+          )
+        }}
+      />
+
+      <Tabs.Screen
+        name="ticket"
+        options={{
           tabBarLabel: 'Ingresso',
+          tabBarIcon: ({ color, size }) => (
+            <BookmarkSimple color={color} size={size} />
+          )
         }}
       />
     </Tabs>
