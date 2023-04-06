@@ -1,7 +1,7 @@
 import { ActivityIndicator, View } from 'react-native'
 
 import { theme } from '../../tailwind.config'
-import { Colors } from '../typings/colorsTheme'
+import { Colors } from '@/typings/colorsTheme'
 
 export function Loading() {
   const { colors } = theme.extend as Colors

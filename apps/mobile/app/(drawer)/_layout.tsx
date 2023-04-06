@@ -8,10 +8,12 @@ import {
   useFonts,
 } from '@expo-google-fonts/roboto'
 
+import { theme } from '../../tailwind.config'
 import { queryClient } from '../../src/lib/react-query'
 
-import CustomDrawerContent from './CustomDrawerContent'
-import { Loading } from '../components/Loading'
+import { Loading } from '@/components/Loading'
+import CustomDrawerContent from '@/components/CustomDrawerContent'
+import { Colors } from '@/typings/colorsTheme'
 
 export default function DrawerLayout() {
   const [isFontsLoaded] = useFonts({
@@ -19,6 +21,8 @@ export default function DrawerLayout() {
     Roboto_500Medium,
     Roboto_700Bold,
   })
+
+  const { colors } = theme.extend as Colors
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -31,8 +35,7 @@ export default function DrawerLayout() {
             headerShown: false,
             drawerStyle: {
               width: '100%',
-              backgroundColor: '#121214',
-              paddingHorizontal: 24,
+              backgroundColor: colors.gray[900],
             },
           }}
           drawerContent={(props) => <CustomDrawerContent {...props} />}
