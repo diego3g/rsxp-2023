@@ -3,6 +3,7 @@ import {
   SignedIn,
   SignedOut,
   useAuth,
+  useSession,
   useUser,
 } from '@clerk/clerk-expo'
 import { StatusBar } from 'expo-status-bar'
@@ -13,14 +14,42 @@ import {
   TouchableOpacity,
   ActivityIndicator,
 } from 'react-native'
+import axios from 'axios'
 
 import { SignInWithOAuthButton } from './src/components/SignInGithubOAuthButton'
+import { useEffect, useState } from 'react'
 
 const CLERK_PUBLISHABLE_KEY = process.env.CLERK_PUBLISHABLE_KEY
 
 export function WithAuthContext() {
   const { userId, sessionId, isLoaded, signOut } = useAuth()
+  const { session } = useSession()
   const { user } = useUser()
+  const [sessionToken, setSessionToken] = useState<null | string>(null)
+
+  function handleSignOut() {
+    signOut()
+  }
+
+  async function handleVerifySession() {
+    const response = await axios.post('http://192.168.15.11:3333', {
+      sessionId,
+      sessionToken,
+    })
+
+    console.log(response.data)
+  }
+
+  useEffect(() => {
+    async function fetchSessionToken() {
+      if (isLoaded) {
+        const token = await session.getToken()
+        setSessionToken(token)
+      }
+    }
+
+    fetchSessionToken()
+  }, [isLoaded, session])
 
   if (!isLoaded) return <ActivityIndicator color="#666" size="large" />
 
@@ -42,6 +71,10 @@ export function WithAuthContext() {
           <Text className="text-white">{sessionId}</Text>
         </View>
         <View>
+          <Text className="text-white text-xl font-bold">Session Token: </Text>
+          <Text className="text-white">{sessionToken}</Text>
+        </View>
+        <View>
           <Text className="text-white text-xl font-bold">Fullname: </Text>
           <Text className="text-white">{user.fullName}</Text>
         </View>
@@ -55,7 +88,14 @@ export function WithAuthContext() {
 
       <TouchableOpacity
         className="rounded bg-slate-600 py-3 px-4"
-        onPress={() => signOut()}
+        onPress={handleVerifySession}
+      >
+        <Text className="text-white uppercase">Verify session</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        className="rounded bg-slate-600 py-3 px-4"
+        onPress={handleSignOut}
       >
         <Text className="text-white uppercase">Sign out</Text>
       </TouchableOpacity>
