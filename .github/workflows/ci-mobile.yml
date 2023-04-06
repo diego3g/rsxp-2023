@@ -1,0 +1,39 @@
+name: CI
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    paths:
+      - 'apps/mobile/**'
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - 'apps/mobile/**'
+    branches:
+      - '**'
+
+jobs:
+  build:
+    name: Build Mobile App
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Clean install dependencies
+        run: npm ci
+
+      - name: Lint & Check types
+        run: |
+          npm run lint
+          npm run types:check
+        working-directory: ./apps/mobile
+
+      - name: Build
+        run: npm run build
+        working-directory: ./apps/mobile
