@@ -1,9 +1,9 @@
 import { Tabs } from 'expo-router'
 import { House, BookmarkSimple } from 'phosphor-react-native'
+import colors from 'tailwindcss/colors'
+import { Platform } from 'react-native'
 
 import { TabsHeader } from '../../components/TabsHeader'
-
-import colors from 'tailwindcss/colors'
 
 export default function TabLayout() {
   return (
@@ -12,9 +12,16 @@ export default function TabLayout() {
         header: () => <TabsHeader />,
         tabBarActiveTintColor: colors.purple[500],
         tabBarInactiveTintColor: colors.gray[200],
+        tabBarItemStyle: {
+          justifyContent: 'center',
+          alignItems: 'center',
+        },
         tabBarStyle: {
           backgroundColor: colors.zinc[800],
           borderTopWidth: 0,
+          height: Platform.OS === 'android' ? 'auto' : 96,
+          paddingBottom: 36,
+          paddingTop: 16,
         },
       }}
     >
