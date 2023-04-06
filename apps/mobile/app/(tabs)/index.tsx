@@ -8,7 +8,7 @@ export default function Ticket() {
         Ingresso
       </Text>
 
-      <Link className="text-rockeseat.mid font-body" href="credential">
+      <Link className="text-ignite-mid font-body" href="credential">
         Acessar credencial
       </Link>
     </View>
