@@ -1,10 +1,10 @@
 import { Controller, Get } from '@nestjs/common';
 import { PrismaService } from './database/prisma.service';
 
-var x = 2
+var x = 3
 
 const obj: { name: string } = {
-  age: 12
+  age: 13
 }
 
 console.log(obj.age)
