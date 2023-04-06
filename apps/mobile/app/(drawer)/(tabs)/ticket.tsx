@@ -1,5 +1,4 @@
 import { useQuery } from '@tanstack/react-query'
-import { Link } from 'expo-router'
 import { Text, View } from 'react-native'
 import { QueryKeys } from '../../../src/utils/query-keys'
 import { getUser } from '../../../src/services/get-users'
