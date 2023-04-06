@@ -15,7 +15,7 @@ export default function DrawerLayout() {
             width: '100%',
             backgroundColor: '#121214',
             paddingHorizontal: 24
-          }
+          },
         }}
         drawerContent={(props) => <CustomDrawerContent {...props} />}
       />
