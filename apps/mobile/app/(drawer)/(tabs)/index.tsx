@@ -1,9 +1,9 @@
-import { DrawerActions } from '@react-navigation/routers';
+import { DrawerActions } from '@react-navigation/routers'
 import { useNavigation } from 'expo-router/src/useNavigation'
 import { Text, View, Button } from 'react-native'
 
 export default function Home() {
-  const navigation = useNavigation();
+  const navigation = useNavigation()
 
   return (
     <View className="bg-zinc-900 flex-1 items-center justify-center">
