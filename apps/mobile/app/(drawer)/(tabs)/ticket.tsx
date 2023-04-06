@@ -1,8 +1,8 @@
 import { useQuery } from '@tanstack/react-query'
 import { Link } from 'expo-router'
 import { Text, View } from 'react-native'
-import { QueryKeys } from '../../src/utils/query-keys'
-import { getUser } from '../../src/services/get-users'
+import { QueryKeys } from '../../../src/utils/query-keys'
+import { getUser } from '../../../src/services/get-users'
 
 export default function Ticket() {
   const { data } = useQuery([QueryKeys.users], getUser)
