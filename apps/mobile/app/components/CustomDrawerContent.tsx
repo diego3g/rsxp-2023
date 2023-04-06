@@ -27,12 +27,12 @@ export default function CustomDrawerContent(
   return (
     <View className="flex-1 justify-evenly">
       <TouchableOpacity
-        className="w-full h-26 pb-4 px-6"
+        className="w-full h-26 pb-4 px-8"
         style={{ paddingTop: insets.top + 48 }}
         activeOpacity={0.7}
         onPress={() => navigation.dispatch(DrawerActions.closeDrawer())}
       >
-        <X size={40} color={colors.white} />
+        <X size={30} color={colors.gray[200]} />
       </TouchableOpacity>
 
       <DrawerContentScrollView {...props}>

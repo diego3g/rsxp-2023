@@ -40,7 +40,7 @@ export default function DrawerItem({
           )}
         </View>
 
-        <Ionicons name="chevron-forward" size={28} color={colors.gray[400]} />
+        <Ionicons name="chevron-forward" size={20} color={colors.gray[400]} />
       </TouchableOpacity>
     </Link>
   )
