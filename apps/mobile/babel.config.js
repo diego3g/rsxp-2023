@@ -1,16 +1,26 @@
 module.exports = function (api) {
   api.cache(true)
   return {
-    presets: ["babel-preset-expo"],
+    presets: ['babel-preset-expo'],
     plugins: [
-      "nativewind/babel",
-      require.resolve("expo-router/babel"),
+      'nativewind/babel',
+      'react-native-reanimated/plugin',
       [
-        "module-resolver",
+        'module:react-native-dotenv',
         {
-          root: ["./src"],
+          envName: 'APP_ENV',
+          moduleName: '@env',
+          path: '.env',
+        },
+      ],
+      require.resolve('expo-router/babel'),
+      [
+        'module-resolver',
+        {
+          root: ['./src'],
           alias: {
-            "@/*": "./src/*",
+            '@/components': './app/components',
+            '@/assets': './app/assets',
           },
         },
       ],

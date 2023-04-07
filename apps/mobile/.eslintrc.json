@@ -1,8 +1,8 @@
 {
-  "extends": [
-    "@rocketseat/eslint-config/react"
-  ],
+  "extends": ["@rocketseat/eslint-config/react"],
   "rules": {
-    "camelcase": "off"
+    "camelcase": "off",
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": ["error"]
   }
 }
