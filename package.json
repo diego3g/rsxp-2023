@@ -7,11 +7,12 @@
   "workspaces": [
     "apps/*"
   ],
-  "dependencies": {
-    "@react-navigation/drawer": "^6.6.2",
-    "react-native-svg": "13.4.0"
+  "scripts": {
+    "husky:prepare": "husky install"
   },
   "devDependencies": {
-    "react-native-svg-transformer": "^1.0.0"
+    "@commitlint/cli": "^17.5.1",
+    "@commitlint/config-conventional": "^17.4.4",
+    "husky": "^8.0.3"
   }
 }
