@@ -30,6 +30,7 @@ jobs:
           scopes: |
             mobile
             server
+            contracts
           # we allow "cross package" PRs with no scope
           requireScope: false
           # ensure that the subject is lower-case first
