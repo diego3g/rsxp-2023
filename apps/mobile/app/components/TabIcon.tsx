@@ -1,7 +1,7 @@
 import React from 'react'
 import { IconProps } from 'phosphor-react-native'
 
-import theme from '../theme'
+import theme from '@/theme'
 
 type TabIconProps = {
   focused: boolean

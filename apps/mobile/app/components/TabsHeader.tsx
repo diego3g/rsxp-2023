@@ -10,7 +10,7 @@ import RSXPLogo from '../assets/rsxp-logo.svg'
 export function TabsHeader() {
   const navigation = useNavigation()
 
-  const insents = useSafeAreaInsets()
+  const insets = useSafeAreaInsets()
 
   function handleOpenDrawerMenu() {
     navigation.dispatch(DrawerActions.openDrawer())
@@ -19,7 +19,7 @@ export function TabsHeader() {
   return (
     <View
       className="flex-row px-5 pt-12 pb-4 items-center gap-4 bg-gray-900"
-      style={{ paddingTop: insents.top }}
+      style={{ paddingTop: insets.top }}
     >
       <TouchableOpacity onPress={handleOpenDrawerMenu}>
         <MenuIcon width={40} height={40} />

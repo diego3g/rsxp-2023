@@ -4,7 +4,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 import { CaretLeft } from 'phosphor-react-native'
 
-import theme from '../theme'
+import theme from '@/theme'
 
 type StackHeaderProps = {
   title: string
@@ -13,12 +13,12 @@ type StackHeaderProps = {
 export function DrawerHeader({ title }: StackHeaderProps) {
   const { goBack } = useNavigation()
 
-  const insents = useSafeAreaInsets()
+  const insets = useSafeAreaInsets()
 
   return (
     <View
       className="flex-row px-5 pb-6 items-center justify-between gap-4 bg-gray-900"
-      style={{ paddingTop: insents.top }}
+      style={{ paddingTop: insets.top }}
     >
       <TouchableOpacity onPress={goBack}>
         <CaretLeft size={28} color={theme.colors.gray[100]} />

@@ -3,10 +3,10 @@ import { House, BookmarkSimple } from 'phosphor-react-native'
 
 import { Platform } from 'react-native'
 
-import { TabsHeader } from '../../components/TabsHeader'
-import { TabIcon } from '../../components/TabIcon'
+import { TabsHeader } from '@/components/TabsHeader'
+import { TabIcon } from '@/components/TabIcon'
 
-import theme from '../../theme'
+import theme from '@/theme'
 
 export default function TabLayout() {
   return (
