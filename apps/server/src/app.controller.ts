@@ -11,10 +11,10 @@ export class AppController {
   @Post()
   async getUser(@Req() request: Request, @Res() response: Response) {
     const sessionId = request.body.sessionId
-    const sessionToken = request.body.sessionToken
+    const token = request.body.token
 
     if (typeof sessionId === 'string') {
-      const session = await sessions.verifySession(sessionId, sessionToken)
+      const session = await sessions.verifySession(sessionId, token)
 
       if (!session) {
         return response.status(400).json({
