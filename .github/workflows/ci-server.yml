@@ -15,7 +15,7 @@ on:
 
 jobs:
   lint:
-    name: Lint & Types
+    name: Lint
     runs-on: ubuntu-latest
 
     steps:
@@ -23,19 +23,17 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
+          cache: 'npm'
 
       - name: Clean install dependencies
         run: npm ci
 
       - name: Lint & Check types
-        run: |
-          npm run lint
-          npm run types:check
+        run: npm run lint
         working-directory: ./apps/server
 
-  build:
-    name: Build
-    needs: [lint]
+  types:
+    name: Types Checking
     runs-on: ubuntu-latest
 
     steps:
@@ -43,11 +41,11 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
+          cache: 'npm'
 
       - name: Clean install dependencies
         run: npm ci
 
-      - name: Build
-        run: |
-          npm run build
+      - name: Lint & Check types
+        run: npm run types:check
         working-directory: ./apps/server
