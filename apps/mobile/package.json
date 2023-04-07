@@ -6,7 +6,10 @@
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "lint": "eslint --ext .ts,.tsx . --no-error-on-unmatched-pattern",
+    "lint:fix": "eslint --ext .ts,.tsx . --no-error-on-unmatched-pattern --fix",
+    "types:check": "tsc --noEmit --pretty"
   },
   "dependencies": {
     "@react-navigation/drawer": "^6.6.2",
