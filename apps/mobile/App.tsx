@@ -1,11 +1,4 @@
-import {
-  ClerkProvider,
-  SignedIn,
-  SignedOut,
-  useAuth,
-  useSession,
-  useUser,
-} from '@clerk/clerk-expo'
+import { SignedIn, SignedOut } from '@clerk/clerk-expo'
 import { StatusBar } from 'expo-status-bar'
 import {
   Text,
@@ -17,46 +10,32 @@ import {
 import axios from 'axios'
 
 import { SignInWithOAuthButton } from './src/components/SignInGithubOAuthButton'
-import { useEffect, useState } from 'react'
-
-const CLERK_PUBLISHABLE_KEY = process.env.CLERK_PUBLISHABLE_KEY
+import { AppProvider } from './src/contexts/AppProvider'
+import { useAuth } from './src/hooks/useAuth'
 
 export function WithAuthContext() {
-  const { userId, sessionId, isLoaded, signOut } = useAuth()
-  const { session } = useSession()
-  const { user } = useUser()
-  const [sessionToken, setSessionToken] = useState<null | string>(null)
-
-  function handleSignOut() {
-    signOut()
-  }
+  const { getSessionInfo, isLoading, signOut, user } = useAuth()
 
   async function handleVerifySession() {
-    const response = await axios.post('http://192.168.15.11:3333', {
-      sessionId,
-      sessionToken,
-    })
+    try {
+      const { sessionId, token } = await getSessionInfo()
+      const response = await axios.post('http://192.168.15.4:3333', {
+        sessionId,
+        token,
+      })
 
-    console.log(response.data)
+      console.log(response.data)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
-  useEffect(() => {
-    async function fetchSessionToken() {
-      if (isLoaded) {
-        const token = await session.getToken()
-        setSessionToken(token)
-      }
-    }
-
-    fetchSessionToken()
-  }, [isLoaded, session])
-
-  if (!isLoaded) return <ActivityIndicator color="#666" size="large" />
+  if (isLoading) return <ActivityIndicator color="#666" size="large" />
 
   return (
     <View className="gap-5 items-center">
       <Image
-        source={{ uri: user.profileImageUrl }}
+        source={{ uri: user?.avatar }}
         className="w-20 h-20 rounded-full"
         alt="profile"
       />
@@ -64,25 +43,15 @@ export function WithAuthContext() {
       <View className="gap-2">
         <View>
           <Text className="text-white text-xl font-bold">User ID: </Text>
-          <Text className="text-white">{userId}</Text>
-        </View>
-        <View>
-          <Text className="text-white text-xl font-bold">Session ID: </Text>
-          <Text className="text-white">{sessionId}</Text>
-        </View>
-        <View>
-          <Text className="text-white text-xl font-bold">Session Token: </Text>
-          <Text className="text-white">{sessionToken}</Text>
+          <Text className="text-white">{user?.id}</Text>
         </View>
         <View>
           <Text className="text-white text-xl font-bold">Fullname: </Text>
-          <Text className="text-white">{user.fullName}</Text>
+          <Text className="text-white">{user?.fullName}</Text>
         </View>
         <View>
           <Text className="text-white text-xl font-bold">Email: </Text>
-          <Text className="text-white">
-            {user.primaryEmailAddress.emailAddress}
-          </Text>
+          <Text className="text-white">{user?.email}</Text>
         </View>
       </View>
 
@@ -95,7 +64,7 @@ export function WithAuthContext() {
 
       <TouchableOpacity
         className="rounded bg-slate-600 py-3 px-4"
-        onPress={handleSignOut}
+        onPress={signOut}
       >
         <Text className="text-white uppercase">Sign out</Text>
       </TouchableOpacity>
@@ -105,7 +74,7 @@ export function WithAuthContext() {
 
 export default function App() {
   return (
-    <ClerkProvider publishableKey={CLERK_PUBLISHABLE_KEY}>
+    <AppProvider>
       <SignedIn>
         <View className="flex-1 bg-zinc-900 items-center justify-center">
           <WithAuthContext />
@@ -117,6 +86,6 @@ export default function App() {
         </View>
       </SignedOut>
       <StatusBar style="light" />
-    </ClerkProvider>
+    </AppProvider>
   )
 }
