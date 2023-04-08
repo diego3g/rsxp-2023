@@ -1,5 +1,7 @@
-import { Controller, Get } from '@nestjs/common'
+import { Controller, Get, Req, UseGuards } from '@nestjs/common'
 import { PrismaService } from './database/prisma.service'
+import { ClerkAuthGuard } from './clerk/clerk.guard'
+import { RequestWithUser } from './clerk/requestInterface.dto'
 
 @Controller()
 export class AppController {
@@ -11,6 +13,14 @@ export class AppController {
 
     return {
       data: users,
+    }
+  }
+
+  @Get('/test-clerk-auth-guard')
+  @UseGuards(ClerkAuthGuard)
+  async get(@Req() req: RequestWithUser) {
+    return {
+      data: req.user,
     }
   }
 }
