@@ -1,0 +1,18 @@
+{
+  "name": "rsxp-2023",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Repositório do app do RS/XP 2023 construído pela comunidade da Rocketseat.",
+  "license": "MIT",
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "husky:prepare": "husky install"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.5.1",
+    "@commitlint/config-conventional": "^17.4.4",
+    "husky": "^8.0.3"
+  }
+}

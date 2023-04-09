@@ -1,0 +1,51 @@
+name: CI - Mobile
+
+on:
+  push:
+    paths:
+      - 'apps/mobile/**'
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - 'apps/mobile/**'
+    branches:
+      - '**'
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'npm'
+
+      - name: Clean install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+        working-directory: ./apps/mobile
+
+  types:
+    name: Types Checking
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'npm'
+
+      - name: Clean install dependencies
+        run: npm ci
+
+      - name: Types check
+        run: npm run types:check
+        working-directory: ./apps/mobile

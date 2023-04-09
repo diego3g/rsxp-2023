@@ -4,5 +4,8 @@
   ],
   "rules": {
     "no-useless-constructor": "off"
-  }
+  },
+  "env": {
+    "jest": true
+}
 }
