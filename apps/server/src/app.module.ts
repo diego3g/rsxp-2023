@@ -5,11 +5,7 @@ import { AppController } from './app.controller'
 import { PrismaService } from './database/prisma.service'
 
 @Module({
-  imports: [
-    ConfigModule.forRoot({
-      envFilePath: '.env',
-    }),
-  ],
+  imports: [ConfigModule.forRoot()],
   controllers: [AppController],
   providers: [PrismaService],
 })
