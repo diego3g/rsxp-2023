@@ -8,8 +8,17 @@ import { PrismaService } from './database/prisma.service'
 export class AppController {
   constructor(private prisma: PrismaService) {}
 
+  @Get()
+  async getUsers() {
+    const users = await this.prisma.user.findMany()
+
+    return {
+      data: users,
+    }
+  }
+
   @Post()
-  async getUser(@Req() request: Request, @Res() response: Response) {
+  async verifySession(@Req() request: Request, @Res() response: Response) {
     const sessionId = request.body.sessionId
     const token = request.body.token
 
