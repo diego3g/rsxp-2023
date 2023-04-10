@@ -5,6 +5,9 @@ import { QueryClientProvider } from '@tanstack/react-query'
 import { queryClient } from '../../src/lib/react-query'
 
 import CustomDrawerContent from '@/components/CustomDrawerContent'
+import { DrawerHeader } from '@/components/DrawerHeader'
+
+import theme from '@/theme'
 
 export default function DrawerLayout() {
   return (
@@ -13,14 +16,21 @@ export default function DrawerLayout() {
 
       <Drawer
         screenOptions={{
-          headerShown: false,
+          header: ({ options }) => <DrawerHeader title={options.title} />,
           drawerStyle: {
             width: '100%',
-            backgroundColor: '#121214',
+            backgroundColor: theme.colors.gray[900],
+            paddingHorizontal: 24,
           },
         }}
         drawerContent={(props) => <CustomDrawerContent {...props} />}
-      />
+      >
+        <Drawer.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Drawer.Screen
+          name="credential"
+          options={{ title: 'Minha credencial' }}
+        />
+      </Drawer>
     </QueryClientProvider>
   )
 }
