@@ -4,7 +4,7 @@ import { Ionicons } from '@expo/vector-icons'
 import { SvgProps } from 'react-native-svg'
 import { Link } from 'expo-router'
 
-import colors from 'tailwindcss/colors'
+import theme from '@/theme/index'
 
 type Props = {
   href: string
@@ -40,7 +40,11 @@ export default function DrawerItem({
           )}
         </View>
 
-        <Ionicons name="chevron-forward" size={20} color={colors.gray[400]} />
+        <Ionicons
+          name="chevron-forward"
+          size={20}
+          color={theme?.colors?.gray[400]}
+        />
       </TouchableOpacity>
     </Link>
   )

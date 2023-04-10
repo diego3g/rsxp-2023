@@ -12,9 +12,8 @@ import { X } from 'phosphor-react-native'
 import AuthenticationSvg from '@/assets/authentication.svg'
 import CredentialSvg from '@/assets/credential.svg'
 
-import colors from 'tailwindcss/colors'
-
 import DrawerItem from '@/components/DrawerItem'
+import theme from '@/theme/index'
 
 import { version } from '../../package.json'
 
@@ -27,12 +26,12 @@ export default function CustomDrawerContent(
   return (
     <View className="flex-1 justify-evenly">
       <TouchableOpacity
-        className="w-full h-26 pb-4 px-8"
-        style={{ paddingTop: insets.top + 48 }}
+        className="w-full h-26 pb-4"
+        style={{ paddingTop: insets.top }}
         activeOpacity={0.7}
         onPress={() => navigation.dispatch(DrawerActions.closeDrawer())}
       >
-        <X size={30} color={colors.gray[200]} />
+        <X size={32} color={theme?.colors?.gray[100]} />
       </TouchableOpacity>
 
       <DrawerContentScrollView {...props}>

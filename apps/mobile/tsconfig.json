@@ -3,7 +3,24 @@
     "baseUrl": "./",
     "strictNullChecks": true,
     "paths": {
-      "@/*": ["./app/*"]
+      "@/*": [
+        "./src/app/*",
+      ],
+      "@/components/*": [
+        "./src/components/*"
+      ],
+      "@/assets/*": [
+        "./src/assets/*"
+      ],
+      "@/theme/*": [
+        "./src/theme/*"
+      ],
+      "@/contexts/*": [
+        "./src/contexts/*"
+      ],
+      "@/hooks/*": [
+        "./src/hooks/*"
+      ]
     }
   },
   "extends": "expo/tsconfig.base"

@@ -37,7 +37,7 @@ export const AuthContext = createContext<AuthContextDataProps>(
 
 export function AuthProvider({ children }: AuthContextProviderProps) {
   const [user, setUser] = useState<null | User>(null)
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
 
   const { startOAuthFlow } = useOAuth({ strategy: 'oauth_github' })
   const { signOut: clerkSignOut, getToken, sessionId } = useAuth()
@@ -101,8 +101,6 @@ export function AuthProvider({ children }: AuthContextProviderProps) {
     } else {
       setUser(null)
     }
-
-    setIsLoading(false)
   }, [
     clerkUser?.fullName,
     clerkUser?.id,

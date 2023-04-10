@@ -19,8 +19,11 @@ module.exports = function (api) {
         {
           root: ['./src'],
           alias: {
-            '@/components': './app/components',
-            '@/assets': './app/assets',
+            '@/components': './src/components',
+            '@/assets': './src/assets',
+            '@/theme': './src/theme',
+            '@/contexts': './src/contexts',
+            '@/hooks': './src/hooks',
           },
         },
       ],
