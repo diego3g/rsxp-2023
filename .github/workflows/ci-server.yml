@@ -28,7 +28,7 @@ jobs:
       - name: Clean install dependencies
         run: npm ci
 
-      - name: Lint & Check types
+      - name: Lint
         run: npm run lint
         working-directory: ./apps/server
 
@@ -46,6 +46,6 @@ jobs:
       - name: Clean install dependencies
         run: npm ci
 
-      - name: Lint & Check types
+      - name: Types check
         run: npm run types:check
         working-directory: ./apps/server
