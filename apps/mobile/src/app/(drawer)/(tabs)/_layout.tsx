@@ -1,6 +1,5 @@
 import { Tabs } from 'expo-router'
 import { House, BookmarkSimple } from 'phosphor-react-native'
-
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 import { TabsHeader } from '@/components/TabsHeader'
@@ -30,6 +29,8 @@ export default function TabLayout() {
         },
       }}
     >
+      <Tabs.Screen name="oauth-native-callback" redirect />
+
       <Tabs.Screen
         name="index"
         options={{
