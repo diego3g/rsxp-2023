@@ -11,8 +11,8 @@ type TabIconProps = {
 
 export function TabIcon({ focused, icon: Icon, size }: TabIconProps) {
   const iconColor = focused
-    ? theme.colors.rocketseat.light
-    : theme.colors.gray[400]
+    ? theme?.colors?.rocketseat.light
+    : theme?.colors?.gray[400]
 
   return <Icon color={iconColor} size={size} />
 }

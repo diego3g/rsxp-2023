@@ -43,7 +43,7 @@ export default function DrawerItem({
         <Ionicons
           name="chevron-forward"
           size={20}
-          color={theme.colors.gray[400]}
+          color={theme?.colors?.gray[400]}
         />
       </TouchableOpacity>
     </Link>

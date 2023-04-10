@@ -31,7 +31,7 @@ export default function CustomDrawerContent(
         activeOpacity={0.7}
         onPress={() => navigation.dispatch(DrawerActions.closeDrawer())}
       >
-        <X size={32} color={theme.colors.gray[100]} />
+        <X size={32} color={theme?.colors?.gray[100]} />
       </TouchableOpacity>
 
       <DrawerContentScrollView {...props}>

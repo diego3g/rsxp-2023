@@ -21,7 +21,7 @@ export function DrawerHeader({ title }: StackHeaderProps) {
       style={{ paddingTop: insets.top }}
     >
       <TouchableOpacity onPress={goBack}>
-        <CaretLeft size={28} color={theme.colors.gray[100]} />
+        <CaretLeft size={28} color={theme?.colors?.gray[100]} />
       </TouchableOpacity>
       <Text className="text-base font-medium text-gray-100">{title}</Text>
 
