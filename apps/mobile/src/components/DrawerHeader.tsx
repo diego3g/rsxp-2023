@@ -4,7 +4,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 import { CaretLeft } from 'phosphor-react-native'
 
-import theme from '@/theme'
+import theme from '@/theme/index'
 
 type StackHeaderProps = {
   title: string

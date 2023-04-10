@@ -6,7 +6,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { TabsHeader } from '@/components/TabsHeader'
 import { TabIcon } from '@/components/TabIcon'
 
-import theme from '@/theme'
+import theme from '@/theme/index'
 
 export default function TabLayout() {
   const insets = useSafeAreaInsets()

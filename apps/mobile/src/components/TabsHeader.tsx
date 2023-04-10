@@ -4,8 +4,8 @@ import { DrawerActions } from '@react-navigation/routers'
 import { useNavigation } from 'expo-router/src/useNavigation'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
-import MenuIcon from '../assets/menu-icon.svg'
-import RSXPLogo from '../assets/rsxp-logo.svg'
+import MenuIcon from '@/assets/menu-icon.svg'
+import RSXPLogo from '@/assets/rsxp-logo.svg'
 
 export function TabsHeader() {
   const navigation = useNavigation()
