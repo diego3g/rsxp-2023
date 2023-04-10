@@ -1,4 +1,4 @@
-import { Controller, Post, Req, Res } from '@nestjs/common'
+import { Controller, Post, Req, Res, Get } from '@nestjs/common'
 import { sessions, users } from '@clerk/clerk-sdk-node'
 import { Request, Response } from 'express'
 
