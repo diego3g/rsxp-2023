@@ -22,6 +22,8 @@ module.exports = function (api) {
             '@/components': './src/components',
             '@/assets': './src/assets',
             '@/theme': './src/theme',
+            '@/contexts': './src/contexts',
+            '@/hooks': './src/hooks',
           },
         },
       ],
