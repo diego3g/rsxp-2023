@@ -1,14 +1,12 @@
 import { Drawer } from 'expo-router/drawer'
 import { StatusBar } from 'expo-status-bar'
-import { QueryClientProvider } from '@tanstack/react-query'
-
-import { queryClient } from '../../src/lib/react-query'
 
 import CustomDrawerContent from '@/components/CustomDrawerContent'
+import { AppProvider } from '../../src/contexts/AppProvider'
 
 export default function DrawerLayout() {
   return (
-    <QueryClientProvider client={queryClient}>
+    <AppProvider>
       <StatusBar style="light" backgroundColor="transparent" translucent />
 
       <Drawer
@@ -21,6 +19,6 @@ export default function DrawerLayout() {
         }}
         drawerContent={(props) => <CustomDrawerContent {...props} />}
       />
-    </QueryClientProvider>
+    </AppProvider>
   )
 }

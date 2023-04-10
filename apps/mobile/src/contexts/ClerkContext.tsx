@@ -1,8 +1,7 @@
 import { ReactNode } from 'react'
 import { ClerkProvider as ClerkProviderLib } from '@clerk/clerk-expo'
 import * as SecureStore from 'expo-secure-store'
-
-const CLERK_PUBLISHABLE_KEY = process.env.CLERK_PUBLISHABLE_KEY
+import { CLERK_PUBLISHABLE_KEY } from '@env'
 
 type ClerkProviderProps = {
   children: ReactNode
@@ -11,19 +10,15 @@ type ClerkProviderProps = {
 export function ClerkProvider({ children }: ClerkProviderProps) {
   const tokenCache = {
     getToken(key: string) {
-      try {
-        return SecureStore.getItemAsync(key)
-      } catch (err) {
-        return null
-      }
+      return SecureStore.getItemAsync(key)
     },
     saveToken(key: string, value: string) {
-      try {
-        return SecureStore.setItemAsync(key, value)
-      } catch (err) {
-        return null
-      }
+      return SecureStore.setItemAsync(key, value)
     },
+  }
+
+  if (!CLERK_PUBLISHABLE_KEY) {
+    throw Error('Invalid Clerk Publishable key.')
   }
 
   return (

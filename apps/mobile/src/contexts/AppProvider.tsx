@@ -1,6 +1,7 @@
 import { ReactNode } from 'react'
 import { ClerkProvider } from './ClerkContext'
 import { AuthProvider } from './AuthContext'
+import { ReactQueryProvider } from './ReactQueryProvider'
 
 type AppProviderProps = {
   children: ReactNode
@@ -9,7 +10,9 @@ type AppProviderProps = {
 export function AppProvider({ children }: AppProviderProps) {
   return (
     <ClerkProvider>
-      <AuthProvider>{children}</AuthProvider>
+      <AuthProvider>
+        <ReactQueryProvider>{children}</ReactQueryProvider>
+      </AuthProvider>
     </ClerkProvider>
   )
 }
