@@ -13,7 +13,7 @@ import AuthenticationSvg from '@/assets/authentication.svg'
 import CredentialSvg from '@/assets/credential.svg'
 
 import DrawerItem from '@/components/DrawerItem'
-import theme from '@/theme'
+import theme from '@/theme/index'
 
 import { version } from '../../package.json'
 

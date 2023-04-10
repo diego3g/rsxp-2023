@@ -4,7 +4,7 @@ import { Ionicons } from '@expo/vector-icons'
 import { SvgProps } from 'react-native-svg'
 import { Link } from 'expo-router'
 
-import theme from '@/theme'
+import theme from '@/theme/index'
 
 type Props = {
   href: string

@@ -7,7 +7,7 @@ import { queryClient } from '../../lib/react-query'
 import CustomDrawerContent from '@/components/CustomDrawerContent'
 import { DrawerHeader } from '@/components/DrawerHeader'
 
-import theme from '@/theme';
+import theme from '@/theme/index'
 
 export default function DrawerLayout() {
   return (
@@ -16,10 +16,10 @@ export default function DrawerLayout() {
 
       <Drawer
         screenOptions={{
-          header: ({ options }) => <DrawerHeader title={options.title} />,
+          header: ({ options }) => <DrawerHeader title={options.title ?? ''} />,
           drawerStyle: {
             width: '100%',
-            backgroundColor: theme.colors.gray[900],
+            backgroundColor: theme?.colors?.gray[900],
             paddingHorizontal: 24,
           },
         }}
