@@ -19,7 +19,7 @@ export function Button({
     <TouchableOpacity
       disabled={isLoading}
       className={clsx(
-        'h-[52px] w-full rounded-md flex flex-row items-center justify-center mt-2',
+        'h-[52px] w-full rounded-md flex flex-row items-center justify-center',
         {
           'bg-rocketseat-mid': variant === 'primary',
           'bg-danger-light': variant === 'danger',
