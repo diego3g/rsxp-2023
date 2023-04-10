@@ -16,6 +16,8 @@ export default function TabLayout() {
         },
       }}
     >
+      <Tabs.Screen name="oauth-native-callback" redirect />
+
       <Tabs.Screen
         name="index"
         options={{
