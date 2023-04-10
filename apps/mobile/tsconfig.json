@@ -14,7 +14,19 @@
       ],
       "@/theme/*": [
         "./src/theme/*"
-      ]
+      ],
+      "@/app": [
+        "./src/app/*"
+      ],
+      "@/lib": [
+        "./src/lib/*"
+      ],
+      "@/services": [
+        "./src/services/*"
+      ],
+      "@/utils": [
+        "./src/utils/*"
+      ],
     }
   },
   "extends": "expo/tsconfig.base"
