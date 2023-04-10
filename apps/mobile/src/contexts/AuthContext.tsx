@@ -1,16 +1,16 @@
-import type { OAuthStrategy } from '@clerk/types/dist/strategies'
-
-import { ReactNode, createContext, useEffect, useState } from 'react'
-import { useSignUp, useSignIn, useAuth, useUser } from '@clerk/clerk-expo'
-import * as AuthSession from 'expo-auth-session'
-import Constants from 'expo-constants'
-
-type OAUTH_PROVIDERS = 'github'
+import {
+  ReactNode,
+  createContext,
+  useCallback,
+  useEffect,
+  useState,
+} from 'react'
+import { useOAuth, useAuth, useUser } from '@clerk/clerk-expo'
 
 type User = {
   id: string
-  email: string
-  fullName: string
+  email: string | undefined
+  fullName: string | null
   avatar: string
 }
 
@@ -21,7 +21,7 @@ type GetSessionInfo = {
 
 export type AuthContextDataProps = {
   user: null | User
-  signInOrSignUpWithOAuth: (provider: OAUTH_PROVIDERS) => Promise<void>
+  signInOrSignUpWithOAuth: () => Promise<void>
   signOut: () => Promise<void>
   getSessionInfo: () => Promise<GetSessionInfo>
   isLoading: boolean
@@ -39,68 +39,20 @@ export function AuthProvider({ children }: AuthContextProviderProps) {
   const [user, setUser] = useState<null | User>(null)
   const [isLoading, setIsLoading] = useState(true)
 
-  const { signIn, setSession } = useSignIn()
-  const { signUp } = useSignUp()
+  const { startOAuthFlow } = useOAuth({ strategy: 'oauth_github' })
   const { signOut: clerkSignOut, getToken, sessionId } = useAuth()
   const { user: clerkUser } = useUser()
 
-  async function signInOrSignUpWithOAuth(provider: OAUTH_PROVIDERS) {
+  const signInOrSignUpWithOAuth = useCallback(async () => {
     try {
       setIsLoading(true)
-      const strategy: OAuthStrategy = `oauth_${provider}`
-      const redirectUrl = AuthSession.makeRedirectUri({
-        scheme: Constants.platform.scheme,
-      })
 
-      await signIn.create({
-        strategy,
-        redirectUrl,
-      })
-
-      const {
-        firstFactorVerification: { externalVerificationRedirectURL },
-      } = signIn
-
-      if (!externalVerificationRedirectURL)
-        throw Error('Something went wrong during the OAuth flow. Try again.')
-
-      const authResult = await AuthSession.startAsync({
-        authUrl: externalVerificationRedirectURL.toString(),
-        returnUrl: redirectUrl,
-      })
-
-      if (authResult.type !== 'success') {
-        throw Error('Something went wrong during the OAuth flow. Try again.')
-      }
-
-      const { rotating_token_nonce: rotatingTokenNonce } = authResult.params
-
-      await signIn.reload({ rotatingTokenNonce })
-
-      const { createdSessionId } = signIn
+      const { createdSessionId, setActive } = await startOAuthFlow()
 
       if (createdSessionId) {
-        // If we have a createdSessionId, then auth was successful
-        await setSession(createdSessionId)
+        setActive({ session: createdSessionId })
       } else {
-        // If we have no createdSessionId, then this is a first time sign-in, so
-        // we should process this as a signUp instead
-        // Throw if we're not in the right state for creating a new user
-        if (
-          !signUp ||
-          signIn.firstFactorVerification.status !== 'transferable'
-        ) {
-          throw Error(
-            'Something went wrong during the Sign up OAuth flow. Please ensure that all sign up requirements are met.',
-          )
-        }
-
-        // Create user
-        await signUp.create({ transfer: true })
-        await signUp.reload({
-          rotatingTokenNonce: authResult.params.rotating_token_nonce,
-        })
-        await setSession(signUp.createdSessionId)
+        throw Error('Clerk session not created.')
       }
     } catch (err) {
       console.log(JSON.stringify(err, null, 2))
@@ -108,7 +60,7 @@ export function AuthProvider({ children }: AuthContextProviderProps) {
     } finally {
       setIsLoading(false)
     }
-  }
+  }, [startOAuthFlow])
 
   async function signOut() {
     try {
@@ -125,6 +77,11 @@ export function AuthProvider({ children }: AuthContextProviderProps) {
     try {
       setIsLoading(true)
       const token = await getToken()
+
+      if (!token || !sessionId) {
+        throw Error('Session info not available.')
+      }
+
       return { sessionId, token }
     } catch (error) {
       throw Error(error)
@@ -134,7 +91,7 @@ export function AuthProvider({ children }: AuthContextProviderProps) {
   }
 
   useEffect(() => {
-    if (clerkUser?.id) {
+    if (clerkUser?.id && clerkUser.primaryEmailAddress && clerkUser.fullName) {
       setUser({
         email: clerkUser.primaryEmailAddress.emailAddress,
         id: clerkUser.id,
@@ -149,7 +106,7 @@ export function AuthProvider({ children }: AuthContextProviderProps) {
   }, [
     clerkUser?.fullName,
     clerkUser?.id,
-    clerkUser?.primaryEmailAddress.emailAddress,
+    clerkUser?.primaryEmailAddress,
     clerkUser?.profileImageUrl,
   ])
 
