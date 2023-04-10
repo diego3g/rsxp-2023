@@ -13,6 +13,14 @@ export default function Home() {
           <ButtonText>VINCULAR INGRESSO À CONTA</ButtonText>
         </Button>
 
+        <Button isLoading variant="danger">
+          <ButtonText>VINCULAR INGRESSO À CONTA</ButtonText>
+        </Button>
+
+        <Button isLoading variant="normal">
+          <ButtonText>VINCULAR INGRESSO À CONTA</ButtonText>
+        </Button>
+
         <Button>
           <ButtonText>VINCULAR INGRESSO À CONTA</ButtonText>
         </Button>

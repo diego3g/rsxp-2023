@@ -24,6 +24,9 @@ export function Button({
           'bg-rocketseat-mid': variant === 'primary',
           'bg-danger-light': variant === 'danger',
           'bg-gray-800': variant === 'normal',
+          'bg-rocketseat-low': variant === 'primary' && isLoading,
+          'bg-danger-low': variant === 'danger' && isLoading,
+          'bg-gray-900': variant === 'normal' && isLoading,
         },
       )}
     >
