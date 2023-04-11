@@ -3,9 +3,6 @@
     "baseUrl": "./",
     "strictNullChecks": true,
     "paths": {
-      "@/*": [
-        "./src/app/*",
-      ],
       "@/components/*": [
         "./src/components/*"
       ],
@@ -14,6 +11,18 @@
       ],
       "@/theme/*": [
         "./src/theme/*"
+      ],
+      "@/app/*": [
+        "./src/app/*"
+      ],
+      "@/lib/*": [
+        "./src/lib/*"
+      ],
+      "@/services/*": [
+        "./src/services/*"
+      ],
+      "@/utils/*": [
+        "./src/utils/*"
       ],
       "@/contexts/*": [
         "./src/contexts/*"
