@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import { Text, View } from 'react-native'
-import { QueryKeys } from '../../../utils/query-keys'
-import { getUser } from '../../../services/get-users'
+import { QueryKeys } from '@/utils/query-keys'
+import { getUser } from '@/services/get-users'
 
 export default function Ticket() {
   const { data } = useQuery([QueryKeys.users], getUser)

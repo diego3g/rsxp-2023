@@ -10,16 +10,12 @@ interface ButtonProps {
   variant?: 'primary' | 'normal' | 'danger'
 }
 
-export function Button({
-  children,
-  isLoading,
-  variant = 'primary',
-}: ButtonProps) {
+function ButtonRoot({ children, isLoading, variant = 'primary' }: ButtonProps) {
   return (
     <TouchableOpacity
       disabled={isLoading}
       className={clsx(
-        'h-[52px] w-full rounded-md flex flex-row items-center justify-center',
+        'h-[52px] w-full rounded-md flex flex-row items-center justify-center transition-colors',
         {
           'bg-rocketseat-mid': variant === 'primary',
           'bg-danger-light': variant === 'danger',
@@ -43,10 +39,15 @@ interface ButtonTextProps {
   children: ReactNode
 }
 
-export function ButtonText({ children }: ButtonTextProps) {
+function ButtonText({ children }: ButtonTextProps) {
   return (
     <Text className="text-white font-heading text-sm uppercase ml-2">
       {children}
     </Text>
   )
+}
+
+export const Button = {
+  Root: ButtonRoot,
+  Text: ButtonText,
 }

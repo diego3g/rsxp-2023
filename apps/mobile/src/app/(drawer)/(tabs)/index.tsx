@@ -1,4 +1,4 @@
-import { Button, ButtonText } from '@/components/Button'
+import { Button } from '@/components/Button'
 import { Text, View } from 'react-native'
 import { Ticket } from 'phosphor-react-native'
 import theme from '@/theme/index'
@@ -9,30 +9,30 @@ export default function Home() {
       <Text className="text-gray-100 font-bold text-2xl">O Evento</Text>
 
       <View className="flex flex-col w-full mt-2">
-        <Button isLoading>
-          <ButtonText>VINCULAR INGRESSO À CONTA</ButtonText>
-        </Button>
+        <Button.Root isLoading>
+          <Button.Text>VINCULAR INGRESSO À CONTA</Button.Text>
+        </Button.Root>
 
-        <Button isLoading variant="danger">
-          <ButtonText>VINCULAR INGRESSO À CONTA</ButtonText>
-        </Button>
+        <Button.Root isLoading variant="danger">
+          <Button.Text>VINCULAR INGRESSO À CONTA</Button.Text>
+        </Button.Root>
 
-        <Button isLoading variant="normal">
-          <ButtonText>VINCULAR INGRESSO À CONTA</ButtonText>
-        </Button>
+        <Button.Root isLoading variant="normal">
+          <Button.Text>VINCULAR INGRESSO À CONTA</Button.Text>
+        </Button.Root>
 
-        <Button>
-          <ButtonText>VINCULAR INGRESSO À CONTA</ButtonText>
-        </Button>
+        <Button.Root>
+          <Button.Text>VINCULAR INGRESSO À CONTA</Button.Text>
+        </Button.Root>
 
-        <Button variant="danger">
-          <ButtonText>REMOVER INGRESSO</ButtonText>
-        </Button>
+        <Button.Root variant="danger">
+          <Button.Text>REMOVER INGRESSO</Button.Text>
+        </Button.Root>
 
-        <Button variant="normal">
+        <Button.Root variant="normal">
           <Ticket color={theme?.colors?.white as string} />
-          <ButtonText>COMPRAR INGRESSO</ButtonText>
-        </Button>
+          <Button.Text>COMPRAR INGRESSO</Button.Text>
+        </Button.Root>
       </View>
     </View>
   )
