@@ -15,16 +15,16 @@
       "@/theme/*": [
         "./src/theme/*"
       ],
-      "@/app": [
+      "@/app/*": [
         "./src/app/*"
       ],
-      "@/lib": [
+      "@/lib/*": [
         "./src/lib/*"
       ],
-      "@/services": [
+      "@/services/*": [
         "./src/services/*"
       ],
-      "@/utils": [
+      "@/utils/*": [
         "./src/utils/*"
       ],
       "@/contexts/*": [
