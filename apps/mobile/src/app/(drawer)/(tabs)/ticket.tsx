@@ -1,16 +1,39 @@
-import { useQuery } from '@tanstack/react-query'
 import { Text, View } from 'react-native'
-import { QueryKeys } from '@/utils/query-keys'
-import { getUser } from '@/services/get-users'
+import { Ticket as TicketIcon, Question } from 'phosphor-react-native'
+
+import RocketImg from '@/assets/rocket.svg'
+import { Button } from '@/components/Button'
+import theme from '@/theme/index'
+import { LinkButton } from '@/components/LinkButton'
 
 export default function Ticket() {
-  const { data } = useQuery([QueryKeys.users], getUser)
-
   return (
-    <View className="bg-gray-950 flex-1 items-center justify-center">
-      <Text className="text-gray-100 font-bold text-2xl">Ingresso</Text>
+    <View className="bg-gray-950 flex-1 px-5 py-10">
+      <RocketImg />
+      <Text className="text-gray-100 font-bold text-2xl mt-8">
+        Já possui um ingresso?
+      </Text>
 
-      <Text className="text-gray-100 font-bold text-2xl">{data?.login}</Text>
+      <Text className="text-gray-200 mt-1 font-body text-base w-[312px] mb-5">
+        Vincule seu ingresso do Sympla com sua conta para facilitar seu check-in
+        no evento!
+      </Text>
+
+      <LinkButton.Root>
+        <LinkButton.Text>Como obter esse número?</LinkButton.Text>
+        <Question color={theme?.colors?.gray[300]} size={16} />
+      </LinkButton.Root>
+
+      <Button.Root className="mt-5">
+        <Button.Text>VINCULAR INGRESSO À CONTA</Button.Text>
+      </Button.Root>
+
+      <View className="my-4 h-[1px] bg-gray-700" />
+
+      <Button.Root variant="normal">
+        <TicketIcon color={theme?.colors?.white as string} />
+        <Button.Text>COMPRAR INGRESSO</Button.Text>
+      </Button.Root>
     </View>
   )
 }
