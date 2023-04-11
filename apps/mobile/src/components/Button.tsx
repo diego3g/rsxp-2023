@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import { ActivityIndicator, Text, TouchableOpacity } from 'react-native'
+import { ActivityIndicator, Text, TouchableOpacity, View } from 'react-native'
 import { clsx } from 'clsx'
 
 import theme from '@/theme/index'
@@ -8,6 +8,14 @@ interface ButtonProps {
   children: ReactNode
   isLoading?: boolean
   variant?: 'primary' | 'normal' | 'danger'
+}
+
+interface ButtonTextProps {
+  children: ReactNode
+}
+
+interface ButtonIconProps {
+  children: ReactNode
 }
 
 function ButtonRoot({ children, isLoading, variant = 'primary' }: ButtonProps) {
@@ -35,13 +43,13 @@ function ButtonRoot({ children, isLoading, variant = 'primary' }: ButtonProps) {
   )
 }
 
-interface ButtonTextProps {
-  children: ReactNode
+function ButtonIcon({ children }: ButtonIconProps) {
+  return <View className="mr-2">{children}</View>
 }
 
 function ButtonText({ children }: ButtonTextProps) {
   return (
-    <Text className="text-white font-heading text-sm uppercase ml-2">
+    <Text className="text-white font-heading text-sm uppercase">
       {children}
     </Text>
   )
@@ -50,4 +58,5 @@ function ButtonText({ children }: ButtonTextProps) {
 export const Button = {
   Root: ButtonRoot,
   Text: ButtonText,
+  Icon: ButtonIcon,
 }
