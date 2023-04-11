@@ -1,7 +1,20 @@
 import { ReactNode } from 'react'
-import { Text, TouchableOpacity, TouchableOpacityProps } from 'react-native'
+import {
+  Text,
+  TouchableOpacity,
+  TouchableOpacityProps,
+  View,
+} from 'react-native'
 
 interface LinkButtonProps extends TouchableOpacityProps {
+  children: ReactNode
+}
+
+interface LinkButtonTextProps {
+  children: ReactNode
+}
+
+interface LinkButtonIconProps {
   children: ReactNode
 }
 
@@ -16,17 +29,16 @@ export function LinkButtonRoot({ children, ...rest }: LinkButtonProps) {
   )
 }
 
-interface LinkButtonTextProps {
-  children: ReactNode
+export function LinkButtonIcon({ children }: LinkButtonIconProps) {
+  return <View className="ml-1">{children}</View>
 }
 
 export function LinkButtonText({ children }: LinkButtonTextProps) {
-  return (
-    <Text className="text-sm text-gray-300 font-subtitle mr-1">{children}</Text>
-  )
+  return <Text className="text-sm text-gray-300 font-subtitle">{children}</Text>
 }
 
 export const LinkButton = {
   Root: LinkButtonRoot,
   Text: LinkButtonText,
+  Icon: LinkButtonIcon,
 }

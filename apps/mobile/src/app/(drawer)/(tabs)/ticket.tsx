@@ -25,7 +25,9 @@ export default function Ticket() {
 
         <LinkButton.Root>
           <LinkButton.Text>Como obter esse número?</LinkButton.Text>
-          <Question color={theme?.colors?.gray[300]} size={16} />
+          <LinkButton.Icon>
+            <Question color={theme?.colors?.gray[300]} size={16} />
+          </LinkButton.Icon>
         </LinkButton.Root>
 
         <Button.Root className="mt-5">
