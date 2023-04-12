@@ -20,7 +20,7 @@ export default function Ticket() {
             Já possui um ingresso?
           </Text>
 
-          <Text className="text-gray-200 mt-1 font-body text-base w-[312px] mb-5">
+          <Text className="text-gray-200 mt-1 font-body text-base mb-5">
             Vincule seu ingresso do Sympla com sua conta para facilitar seu
             check-in no evento!
           </Text>
