@@ -4,6 +4,7 @@ import {
   Text,
   TouchableOpacity,
   TouchableOpacityProps,
+  View,
 } from 'react-native'
 import { clsx } from 'clsx'
 
@@ -13,6 +14,14 @@ interface ButtonProps extends TouchableOpacityProps {
   children: ReactNode
   isLoading?: boolean
   variant?: 'primary' | 'normal' | 'danger'
+}
+
+interface ButtonTextProps {
+  children: ReactNode
+}
+
+interface ButtonIconProps {
+  children: ReactNode
 }
 
 function ButtonRoot({
@@ -46,13 +55,13 @@ function ButtonRoot({
   )
 }
 
-interface ButtonTextProps {
-  children: ReactNode
+function ButtonIcon({ children }: ButtonIconProps) {
+  return <View className="mr-2">{children}</View>
 }
 
 function ButtonText({ children }: ButtonTextProps) {
   return (
-    <Text className="text-white font-heading text-sm uppercase ml-2">
+    <Text className="text-white font-heading text-sm uppercase">
       {children}
     </Text>
   )
@@ -61,4 +70,5 @@ function ButtonText({ children }: ButtonTextProps) {
 export const Button = {
   Root: ButtonRoot,
   Text: ButtonText,
+  Icon: ButtonIcon,
 }
