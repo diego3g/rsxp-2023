@@ -1,6 +1,6 @@
 import { Button } from '@/components/Button'
 import { Text, View } from 'react-native'
-import { Ticket, Hash } from 'phosphor-react-native'
+import { Ticket } from 'phosphor-react-native'
 import theme from '@/theme/index'
 import { Input } from '@/components/Input'
 
@@ -10,13 +10,6 @@ export default function Home() {
       <Text className="text-gray-100 font-bold text-2xl">O Evento</Text>
 
       <View className="flex flex-col w-full mt-2">
-        <Input.Root>
-          <Input.Icon>
-            <Hash size={20} color={theme?.colors?.gray[400]} />
-          </Input.Icon>
-          <Input.Control placeholder="Número do ingresso no Sympla" />
-        </Input.Root>
-
         <Input.Root>
           <Input.Control placeholder="Número do ingresso no Sympla" />
         </Input.Root>
