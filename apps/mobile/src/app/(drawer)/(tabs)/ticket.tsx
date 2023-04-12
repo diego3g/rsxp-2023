@@ -31,7 +31,6 @@ export default function Ticket() {
             </Input.Icon>
             <Input.Control
               placeholder="Número do ingresso no Sympla"
-              keyboardType="numeric"
               returnKeyType="send"
             />
           </Input.Root>
@@ -50,7 +49,9 @@ export default function Ticket() {
           <View className="my-4 h-[1px] bg-gray-700" />
 
           <Button.Root variant="normal">
-            <TicketIcon color={theme?.colors?.white as string} />
+            <Button.Icon>
+              <TicketIcon color={theme?.colors?.white as string} />
+            </Button.Icon>
             <Button.Text>COMPRAR INGRESSO</Button.Text>
           </Button.Root>
         </View>
