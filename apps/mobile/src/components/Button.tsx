@@ -1,10 +1,16 @@
 import { ReactNode } from 'react'
-import { ActivityIndicator, Text, TouchableOpacity, View } from 'react-native'
+import {
+  ActivityIndicator,
+  Text,
+  TouchableOpacity,
+  TouchableOpacityProps,
+  View,
+} from 'react-native'
 import { clsx } from 'clsx'
 
 import theme from '@/theme/index'
 
-interface ButtonProps {
+interface ButtonProps extends TouchableOpacityProps {
   children: ReactNode
   isLoading?: boolean
   variant?: 'primary' | 'normal' | 'danger'
@@ -18,7 +24,12 @@ interface ButtonIconProps {
   children: ReactNode
 }
 
-function ButtonRoot({ children, isLoading, variant = 'primary' }: ButtonProps) {
+function ButtonRoot({
+  children,
+  isLoading,
+  variant = 'primary',
+  ...rest
+}: ButtonProps) {
   return (
     <TouchableOpacity
       disabled={isLoading}
@@ -33,6 +44,7 @@ function ButtonRoot({ children, isLoading, variant = 'primary' }: ButtonProps) {
           'bg-gray-900': variant === 'normal' && isLoading,
         },
       )}
+      {...rest}
     >
       {isLoading ? (
         <ActivityIndicator color={theme?.colors?.white as string} />
