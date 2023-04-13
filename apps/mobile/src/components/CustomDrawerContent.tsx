@@ -11,6 +11,7 @@ import { X } from 'phosphor-react-native'
 
 import AuthenticationSvg from '@/assets/authentication.svg'
 import CredentialSvg from '@/assets/credential.svg'
+import MapSvg from '@/assets/map.svg'
 
 import DrawerItem from '@/components/DrawerItem'
 import theme from '@/theme/index'
@@ -48,6 +49,15 @@ export default function CustomDrawerContent(
           icon={AuthenticationSvg}
           title="Autenticação"
           subtitle="Seus dados de acesso"
+          isMenuOption
+          {...props}
+        />
+
+        <DrawerItem
+          href="eventMap"
+          icon={MapSvg}
+          title="Mapa do Evento"
+          subtitle="Veja os estandartes e onde estão"
           isMenuOption
           {...props}
         />
