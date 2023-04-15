@@ -18,13 +18,17 @@ npm install
 
 ### Back-end
 
-O back-end desse projeto é construído em Node.js, mais especificamente sua versão LTS. 
+O back-end desse projeto é construído em Node.js, mais especificamente sua versão LTS.
 
 > Você pode instalar o Node.js seguindo [esse guia](https://efficient-sloth-d85.notion.site/Instalando-o-Node-js-d40fdabe8f0a491eb33b85da93d90a2f).
 
 Além do Node.js, utilizamos o banco de dados PostgreSQL e **recomendamos** o uso do Docker para executar o banco em sua máquina.
 
 > Você pode instalar o Docker seguindo [esse guia](https://efficient-sloth-d85.notion.site/Instalando-o-Docker-6290d9994b0b4555a153576a1d97bee2).
+
+Nesse projeto, usamos o serviço de autenticação [Clerk](https://clerk.com/), e você precisará configurá-lo para rodar o projeto em sua máquina.
+
+> Você pode configurar o Clerk seguindo [esse guia](./docs/getting-started-with-clerk.md).
 
 Após instalar o Node.js e o Docker, vamos acessar a pasta do projeto back-end, subir o serviço do banco de dados, configurar nossas variáveis ambiente e, então, subir o servidor HTTP.
 
@@ -59,7 +63,7 @@ npm run ios
 # Caso esteja usando um dispositivo físico
 npm start
 ```
- 
+
 ## Links rápidos ↗
 
 - [Documentação Principal | Notion 📖](https://rsxp-2023.notion.site/App-Mobile-d98e3a215a604a8192b8aa99d7887708)
