@@ -71,9 +71,11 @@ module.exports = {
           900: '#121214',
           950: '#09090A',
         },
+
+        gradient: ['#202024', '#121214'],
       },
       backgroundImage: {
-        background: 'url(/assets/background.png)',
+        background: 'url(/src/assets/background.png)',
       },
       fontFamily: {
         heading: 'Roboto_700Bold',
