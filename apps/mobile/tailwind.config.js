@@ -72,6 +72,9 @@ module.exports = {
           950: '#09090A',
         },
       },
+      backgroundImage: {
+        background: 'url(/assets/background.png)',
+      },
       fontFamily: {
         heading: 'Roboto_700Bold',
         subtitle: 'Roboto_500Medium',
