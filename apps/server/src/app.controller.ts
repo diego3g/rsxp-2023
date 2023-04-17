@@ -1,8 +1,9 @@
-import { Controller, Post, Req, Res, Get } from '@nestjs/common'
-import { sessions, users } from '@clerk/clerk-sdk-node'
+import { Controller, Post, Req, Res, Get, UseGuards } from '@nestjs/common'
+import { RequireAuthProp, sessions, users } from '@clerk/clerk-sdk-node'
 import { Request, Response } from 'express'
 
 import { PrismaService } from './database/prisma.service'
+import { ClerkGuard } from './clerk/clerk.guard'
 
 @Controller()
 export class AppController {
@@ -43,5 +44,13 @@ export class AppController {
     return response.status(400).json({
       error: 'Session not verified',
     })
+  }
+
+  @Get('/auth')
+  @UseGuards(ClerkGuard)
+  async get(@Req() req: RequireAuthProp<Request>) {
+    return {
+      data: req.auth,
+    }
   }
 }
