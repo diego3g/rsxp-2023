@@ -14,4 +14,14 @@ export class TicketService {
       },
     })
   }
+
+  async deleteTicketByUserId(userId: string) {
+    if (!userId) throw new Error('Missing userId on ticket service.')
+
+    return await this.prisma.ticket.delete({
+      where: {
+        userId,
+      },
+    })
+  }
 }
