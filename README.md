@@ -39,7 +39,7 @@ cd apps/server
 cp .env.example .env
 
 # Subir o serviço do PostgreSQL via docker (caso não tenha instalado o PostgreSQL em seu computador)
-docker compose up -d
+docker-compose up -d
 
 # Rodar as migrations do prisma
 npx prisma migrate dev
