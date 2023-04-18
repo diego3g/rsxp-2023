@@ -67,7 +67,7 @@ export class AppController {
   @Get('/ticket')
   @UseGuards(ClerkGuard)
   async getTicket(@Req() req: RequireAuthProp<Request>) {
-    const data: Ticket = await this.ticket.getTicketByUserId(req.auth.userId)
+    const data: any = await this.ticket.getTicketByUserId(req.auth.userId)
     return {
       data,
     }
