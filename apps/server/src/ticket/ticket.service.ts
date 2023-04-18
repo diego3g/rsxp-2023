@@ -34,6 +34,19 @@ export class TicketService {
         description: 'You need to be authenticated to access this route',
       })
 
+    // verify if user have any ticket
+    const userTicketOnDb: any = await this.prisma.ticket.findFirst({
+      where: {
+        userId,
+      },
+    })
+
+    if (!userTicketOnDb)
+      throw new BadRequestException('Not vinculated!', {
+        cause: new Error(),
+        description: 'You dont have a ticket vinculated.',
+      })
+
     return await this.prisma.ticket.delete({
       where: {
         userId,
