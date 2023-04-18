@@ -4,10 +4,12 @@ import { Request, Response } from 'express'
 
 import { PrismaService } from './database/prisma.service'
 import { ClerkGuard } from './clerk/clerk.guard'
+import { TicketService } from './ticket/ticket.service'
+import { Ticket } from '@prisma/client'
 
 @Controller()
 export class AppController {
-  constructor(private prisma: PrismaService) {}
+  constructor(private prisma: PrismaService, private ticket: TicketService) {}
 
   @Get()
   async getUsers() {
@@ -51,6 +53,15 @@ export class AppController {
   async get(@Req() req: RequireAuthProp<Request>) {
     return {
       data: req.auth,
+    }
+  }
+
+  @Get('/ticket')
+  @UseGuards(ClerkGuard)
+  async getTicket(@Req() req: RequireAuthProp<Request>) {
+    const data: Ticket = await this.ticket.getTicketByUserId(req.auth.userId)
+    return {
+      data,
     }
   }
 }
