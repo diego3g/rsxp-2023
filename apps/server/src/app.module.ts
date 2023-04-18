@@ -6,7 +6,7 @@ import { z } from 'zod'
 import { AppController } from './app.controller'
 import { PrismaService } from './database/prisma.service'
 import { SymplaService } from './sympla/sympla.service'
-import { TicketService } from './ticket/ticket.service';
+import { TicketService } from './ticket/ticket.service'
 
 @Module({
   imports: [

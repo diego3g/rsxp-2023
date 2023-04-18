@@ -8,7 +8,6 @@ import {
   Injectable,
   UnauthorizedException,
 } from '@nestjs/common'
-import { Ticket } from '@prisma/client'
 
 @Injectable()
 export class TicketService {
@@ -58,7 +57,7 @@ export class TicketService {
     const TempTicket = ticket.toString()
 
     // verify if user dont have any ticket
-    const userTicketOnDb: Ticket = await this.prisma.ticket.findFirst({
+    const userTicketOnDb: any = await this.prisma.ticket.findFirst({
       where: {
         userId,
       },
@@ -71,7 +70,7 @@ export class TicketService {
       })
 
     // verify if ticket is not from any user
-    const ticketOnDb: Ticket = await this.prisma.ticket.findFirst({
+    const ticketOnDb: any = await this.prisma.ticket.findFirst({
       where: {
         ticket: TempTicket,
       },

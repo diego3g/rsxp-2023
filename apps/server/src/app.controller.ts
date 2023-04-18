@@ -14,7 +14,6 @@ import { Request, Response } from 'express'
 import { PrismaService } from './database/prisma.service'
 import { ClerkGuard } from './clerk/clerk.guard'
 import { TicketService } from './ticket/ticket.service'
-import { Ticket } from '@prisma/client'
 
 @Controller()
 export class AppController {
@@ -77,7 +76,7 @@ export class AppController {
   @Delete('/ticket')
   @UseGuards(ClerkGuard)
   async deleteTicket(@Req() req: RequireAuthProp<Request>) {
-    const data: Ticket = await this.ticket.deleteTicketByUserId(req.auth.userId)
+    const data: any = await this.ticket.deleteTicketByUserId(req.auth.userId)
     return {
       data,
     }
@@ -89,7 +88,7 @@ export class AppController {
     @Req() req: RequireAuthProp<Request>,
     @Param() ticketNumber: number,
   ) {
-    const data: Ticket = await this.ticket.vinculateTicketByUserId(
+    const data: any = await this.ticket.vinculateTicketByUserId(
       req.auth.userId,
       ticketNumber,
     )
