@@ -1,4 +1,13 @@
-import { Controller, Post, Req, Res, Get, UseGuards, Delete } from '@nestjs/common'
+import {
+  Controller,
+  Post,
+  Req,
+  Res,
+  Get,
+  UseGuards,
+  Delete,
+  Param,
+} from '@nestjs/common'
 import { RequireAuthProp, sessions, users } from '@clerk/clerk-sdk-node'
 import { Request, Response } from 'express'
 
@@ -69,6 +78,22 @@ export class AppController {
   @UseGuards(ClerkGuard)
   async deleteTicket(@Req() req: RequireAuthProp<Request>) {
     const data: Ticket = await this.ticket.deleteTicketByUserId(req.auth.userId)
+    return {
+      data,
+    }
+  }
+
+  @Post('/ticket/:ticketNumber')
+  @UseGuards(ClerkGuard)
+  async postTicket(
+    @Req() req: RequireAuthProp<Request>,
+    @Param() ticketNumber: number,
+  ) {
+    const data: Ticket = await this.ticket.vinculateTicketByUserId(
+      req.auth.userId,
+      ticketNumber,
+    )
+
     return {
       data,
     }
