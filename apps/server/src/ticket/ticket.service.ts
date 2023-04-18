@@ -1,12 +1,16 @@
 import { PrismaService } from '@/database/prisma.service'
-import { Injectable } from '@nestjs/common'
+import { Injectable, UnauthorizedException } from '@nestjs/common'
 
 @Injectable()
 export class TicketService {
   constructor(private prisma: PrismaService) {}
 
   async getTicketByUserId(userId: string) {
-    if (!userId) throw new Error('Missing userId on ticket service.')
+    if (!userId)
+      throw new UnauthorizedException('Not authenticated!', {
+        cause: new Error(),
+        description: 'You need to be authenticated to access this route',
+      })
 
     return await this.prisma.ticket.findUnique({
       where: {
@@ -16,7 +20,11 @@ export class TicketService {
   }
 
   async deleteTicketByUserId(userId: string) {
-    if (!userId) throw new Error('Missing userId on ticket service.')
+    if (!userId)
+      throw new UnauthorizedException('Not authenticated!', {
+        cause: new Error(),
+        description: 'You need to be authenticated to access this route',
+      })
 
     return await this.prisma.ticket.delete({
       where: {
