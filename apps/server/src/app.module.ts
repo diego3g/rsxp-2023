@@ -14,7 +14,6 @@ import { SymplaService } from './sympla/sympla.service'
         const envSchema = z.object({
           DATABASE_URL: z.string(),
           CLERK_SECRET_KEY: z.string(),
-          CLERK_JWT_KEY: z.string(),
           SYMPLA_TOKEN: z.string(),
           SYMPLA_EVENT_ID: z.string(),
           THROTTLE_TTL: z.string(),

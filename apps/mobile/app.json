@@ -2,12 +2,11 @@
   "expo": {
     "name": "rsxp",
     "slug": "rsxp",
-    "scheme": "myapp",
     "version": "1.0.0",
     "scheme": "rsxp",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
+    "userInterfaceStyle": "dark",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "cover",

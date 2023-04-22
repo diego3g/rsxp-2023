@@ -12,7 +12,7 @@ import { AppProvider } from '@/contexts/AppProvider'
 import CustomDrawerContent from '@/components/CustomDrawerContent'
 import { DrawerHeader } from '@/components/DrawerHeader'
 
-import theme from '@/theme/index'
+import { theme } from '@/theme/index'
 import { Loading } from '@/components/Loading'
 
 export default function DrawerLayout() {
@@ -34,8 +34,7 @@ export default function DrawerLayout() {
             ),
             drawerStyle: {
               width: '100%',
-              backgroundColor: theme?.colors?.gray[900],
-              paddingHorizontal: 24,
+              backgroundColor: theme.colors.gray[950],
             },
           }}
           drawerContent={(props) => <CustomDrawerContent {...props} />}

@@ -13,7 +13,7 @@ import AuthenticationSvg from '@/assets/authentication.svg'
 import CredentialSvg from '@/assets/credential.svg'
 
 import DrawerItem from '@/components/DrawerItem'
-import theme from '@/theme/index'
+import { theme } from '@/theme/index'
 
 import { version } from '../../package.json'
 
@@ -24,14 +24,14 @@ export default function CustomDrawerContent(
   const navigation = useNavigation()
 
   return (
-    <View className="flex-1 justify-evenly">
+    <View className="flex-1">
       <TouchableOpacity
-        className="w-full h-26 pb-4"
-        style={{ paddingTop: insets.top }}
+        className="w-full h-26 mx-6 pb-4"
+        style={{ paddingTop: insets.top + 8 }}
         activeOpacity={0.7}
         onPress={() => navigation.dispatch(DrawerActions.closeDrawer())}
       >
-        <X size={32} color={theme?.colors?.gray[100]} />
+        <X size={32} color={theme.colors.gray[200]} />
       </TouchableOpacity>
 
       <DrawerContentScrollView {...props}>

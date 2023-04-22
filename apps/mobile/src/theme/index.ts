@@ -1,6 +1,9 @@
 import resolveConfig from 'tailwindcss/resolveConfig'
 import tailwindConfig from '../../tailwind.config'
 
-const { theme } = resolveConfig(tailwindConfig)
+type TailwindTheme = typeof tailwindConfig.theme &
+  typeof tailwindConfig.theme.extend
 
-export default theme
+const tailwindResolvedConfig = resolveConfig(tailwindConfig)
+
+export const theme = tailwindResolvedConfig.theme as TailwindTheme

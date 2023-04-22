@@ -34,22 +34,10 @@ Repita o mesmo procedimento para a aplicação server. Navegue até a pasta `/ap
 CLERK_SECRET_KEY = COLE_AQUI_A_CLERK_SECRET_KEY_DA_SUA_APLICAÇÃO_CLERK
 ```
 
-## Adicionando **JWT public key**
+## Adicionando no servidor
 
-É necessário adicionar a **JWT public key** da nossa aplicação Clerk ao projeto `server`, pois essa chave é utilizada para validar a autenticidade do token **JWT** enviado pelo usuário. Ao validar o token, é possível garantir que a sessão do usuário seja segura e que o acesso aos recursos protegidos esteja restrito apenas aos usuários autenticados.
-
-> Referências: [Networkless Token Verification](https://clerk.com/docs/reference/node/networkless-token-verification), [Manual JWT Verification
-> ](https://clerk.com/docs/request-authentication/validate-session-tokens)
-
-Para adicionar a **JWT public key** da sua aplicação Clerk ao projeto `server`, siga estes passos:
-
-1. Acesse a seção **developers** > **API Keys** no [painel do Clerk](https://dashboard.clerk.com/).
-2. Clique no botão **Advanced** localizado no final da página.
-3. Procure a seção **JWT public key** e selecione a aba **PEM public key** no lado esquerdo.
-4. Copie a **PEM public key** correspondente.
-
-Com o **PEM public key** em mãos, abra o arquivo `.env` do projeto `server` e adicione a variável de ambiente **CLERK_JWT_KEY**:
+Abra o arquivo `.env` do projeto `server` e adicione a variável de ambiente **CLERK_SECRET_KEY**:
 
 ```.env
-CLERK_JWT_KEY = COLE_AQUI_A_PEM_PUBLIC_KEY_DA_SUA_APLICAÇÃO_CLERK
+CLERK_SECRET_KEY="COLE_AQUI_A_SECRET_KEY"
 ```

@@ -1,7 +1,7 @@
 import React from 'react'
 import { IconProps } from 'phosphor-react-native'
 
-import theme from '@/theme/index'
+import { theme } from '@/theme/index'
 
 type TabIconProps = {
   focused: boolean
@@ -12,8 +12,8 @@ type TabIconProps = {
 export function TabIcon({ focused, icon: Icon, size }: TabIconProps) {
   const iconColor = focused
     ? // @ts-ignore
-      theme?.colors?.rocketseat.light
-    : theme?.colors?.gray[400]
+      theme.colors.rocketseat.light
+    : theme.colors.gray[400]
 
   return <Icon color={iconColor} size={size} />
 }

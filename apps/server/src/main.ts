@@ -11,7 +11,7 @@ async function bootstrap() {
   })
 
   app.use(helmet())
-  app.use(ClerkExpressWithAuth({ jwtKey: process.env.CLERK_JWT_KEY }))
+  app.use(ClerkExpressWithAuth())
 
   await app.listen(3333)
 

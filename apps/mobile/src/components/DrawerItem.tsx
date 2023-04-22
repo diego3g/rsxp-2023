@@ -4,7 +4,7 @@ import { Ionicons } from '@expo/vector-icons'
 import { SvgProps } from 'react-native-svg'
 import { Link } from 'expo-router'
 
-import theme from '@/theme/index'
+import { theme } from '@/theme/index'
 
 type Props = {
   href: string
@@ -21,7 +21,7 @@ export default function DrawerItem({
   href,
   isMenuOption = false,
 }: Props) {
-  const classNameMenu = isMenuOption ? 'mx-3 px-4' : 'pr-6 pl-2'
+  const classNameMenu = isMenuOption ? 'px-6' : 'pr-6 pl-2'
 
   return (
     <Link href={href} asChild>
@@ -43,7 +43,7 @@ export default function DrawerItem({
         <Ionicons
           name="chevron-forward"
           size={20}
-          color={theme?.colors?.gray[400]}
+          color={theme.colors.gray[400]}
         />
       </TouchableOpacity>
     </Link>
