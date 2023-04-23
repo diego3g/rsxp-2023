@@ -9,7 +9,7 @@ import {
   Delete,
   Get,
 } from '@nestjs/common'
-import { RequireAuthProp } from '@clerk/clerk-sdk-node'
+import { RequireAuthProp, users } from '@clerk/clerk-sdk-node'
 import { Request } from 'express'
 
 import { PrismaService } from './database/prisma.service'
@@ -112,5 +112,29 @@ export class AppController {
         clerkUserId: userId,
       },
     })
+  }
+
+  @Get('/credential')
+  @UseGuards(ClerkGuard)
+  async getCredential(@Req() req: RequireAuthProp<Request>) {
+    const { userId } = req.auth
+
+    const { ticketNumber } = await this.prisma.ticketLink.findUnique({
+      where: {
+        clerkUserId: userId,
+      },
+    })
+
+    const user = await users.getUser(userId)
+
+    // TODO: Return QRCode data and bio from github
+
+    return {
+      ticketNumber,
+      user: {
+        avatarUrl: user.profileImageUrl,
+        name: `${user.firstName} ${user.lastName}`,
+      },
+    }
   }
 }

@@ -11,6 +11,7 @@ datasource db {
 }
 
 model TicketLink {
+  ticketNumber       Int    @default(autoincrement())
   clerkUserId        String @unique
   symplaTicketNumber String @unique
 
