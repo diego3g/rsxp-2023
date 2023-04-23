@@ -11,9 +11,11 @@ import { useWarmUpBrowser } from '@/hooks/useWarmUpBrowser'
 import { useState } from 'react'
 import { useMutation } from '@tanstack/react-query'
 import { api } from '@/lib/axios'
+import { useAuth } from '@/hooks/useAuth'
 
 export default function Ticket() {
   const [ticketNumber, setTicketNumber] = useState('')
+  const { user, signInOrSignUpWithOAuth, getSessionInfo } = useAuth()
 
   useWarmUpBrowser()
 
@@ -30,7 +32,17 @@ export default function Ticket() {
 
   const { mutateAsync: linkTicket } = useMutation(
     async (ticketNumber: string) => {
-      const response = await api.get('/')
+      if (!user) {
+        await signInOrSignUpWithOAuth()
+      }
+
+      const { token } = await getSessionInfo()
+
+      const response = await api.get('/auth', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
 
       console.log(response.data)
     },

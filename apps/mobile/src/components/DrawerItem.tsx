@@ -1,32 +1,31 @@
-import React from 'react'
-import { Text, TouchableOpacity, View } from 'react-native'
+import React, { forwardRef } from 'react'
+import {
+  Text,
+  TouchableOpacity,
+  TouchableOpacityProps,
+  View,
+} from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 import { SvgProps } from 'react-native-svg'
-import { Link } from 'expo-router'
 
 import { theme } from '@/theme/index'
 
-type Props = {
-  href: string
+interface DrawerItemProps extends TouchableOpacityProps {
   title: string
   subtitle?: string
   icon?: React.FC<SvgProps>
   isMenuOption?: boolean
 }
 
-export default function DrawerItem({
-  title,
-  subtitle,
-  icon: Icon,
-  href,
-  isMenuOption = false,
-}: Props) {
-  const classNameMenu = isMenuOption ? 'px-6' : 'pr-6 pl-2'
+export const DrawerItem = forwardRef<TouchableOpacity, DrawerItemProps>(
+  ({ title, subtitle, icon: Icon, isMenuOption = false, ...rest }, ref) => {
+    const classNameMenu = isMenuOption ? 'px-6' : 'pr-6 pl-2'
 
-  return (
-    <Link href={href} asChild>
+    return (
       <TouchableOpacity
+        ref={ref}
         className={`grow border-b ${classNameMenu} py-4 border-b-gray-800 flex-row items-center`}
+        {...rest}
       >
         {Icon && <Icon />}
 
@@ -46,6 +45,8 @@ export default function DrawerItem({
           color={theme.colors.gray[400]}
         />
       </TouchableOpacity>
-    </Link>
-  )
-}
+    )
+  },
+)
+
+DrawerItem.displayName = 'DrawerItem'

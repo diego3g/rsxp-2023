@@ -28,6 +28,7 @@ export function InputControl({ ...rest }: InputControlProps) {
   return (
     <TextInput
       placeholderTextColor={theme.colors.gray[400]}
+      keyboardAppearance="dark"
       className="w-full text-gray-100 font-body text-base pb-1"
       {...rest}
     />

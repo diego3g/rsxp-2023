@@ -6,5 +6,5 @@ if (!BASE_URL) {
 }
 
 export const api = axios.create({
-  baseURL: BASE_URL,
+  baseURL: 'http://localhost:3333',
 })
