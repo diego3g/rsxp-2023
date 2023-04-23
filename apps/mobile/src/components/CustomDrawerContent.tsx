@@ -70,7 +70,7 @@ export default function CustomDrawerContent(
       </TouchableOpacity>
 
       <DrawerContentScrollView {...props}>
-        <Link href="credential" asChild>
+        {/* <Link href="credential" asChild>
           <DrawerItem
             icon={CredentialSvg}
             title="Minha credencial"
@@ -78,7 +78,7 @@ export default function CustomDrawerContent(
             isMenuOption
             {...props}
           />
-        </Link>
+        </Link> */}
         <DrawerItem
           onPress={handleAuthLink}
           icon={AuthenticationSvg}

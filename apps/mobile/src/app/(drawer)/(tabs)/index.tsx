@@ -2,7 +2,7 @@ import { Alert, SafeAreaView, ScrollView, Text, View } from 'react-native'
 import { Ticket as TicketIcon, Question, Hash } from 'phosphor-react-native'
 import * as WebBrowser from 'expo-web-browser'
 import { useState } from 'react'
-import { useMutation, useQuery } from '@tanstack/react-query'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { z } from 'zod'
 import { useAuth as useClerkAuth } from '@clerk/clerk-expo'
@@ -20,10 +20,11 @@ export default function Ticket() {
   const [ticketNumber, setTicketNumber] = useState('')
   const { getToken } = useClerkAuth()
   const { signInOrSignUpWithOAuth, user } = useAuth()
+  const queryClient = useQueryClient()
 
   useWarmUpBrowser()
 
-  const { data: ticket, isLoading: isLoadingTicket } = useQuery(
+  const { data: ticket, isInitialLoading: isLoadingTicket } = useQuery(
     ['ticket'],
     async () => {
       const token = await getToken()
@@ -36,14 +37,13 @@ export default function Ticket() {
 
       return response.data.ticket
     },
+    {
+      enabled: !!user,
+    },
   )
 
   const { mutateAsync: linkTicket } = useMutation(
     async (ticketNumber: string) => {
-      if (!user) {
-        await signInOrSignUpWithOAuth()
-      }
-
       const token = await getToken()
 
       try {
@@ -58,6 +58,13 @@ export default function Ticket() {
             },
           },
         )
+
+        setTicketNumber('')
+
+        queryClient.setQueryData(['ticket'], {
+          symplaTicketNumber: ticketNumber,
+          clerkUserId: user?.id,
+        })
       } catch (err) {
         if (err instanceof AxiosError) {
           Alert.alert('Eita!', err.response?.data.message)
@@ -68,7 +75,40 @@ export default function Ticket() {
     },
   )
 
-  function handleLinkTicket() {
+  const { mutateAsync: unlinkTicket } = useMutation(
+    async () => {
+      const token = await getToken()
+
+      try {
+        await api.delete('/tickets/link', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+      } catch (err) {
+        if (err instanceof AxiosError) {
+          Alert.alert('Eita!', err.response?.data.message)
+        } else {
+          console.error(err)
+        }
+      }
+    },
+    {
+      onSuccess() {
+        queryClient.setQueryData(['ticket'], null)
+      },
+    },
+  )
+
+  function handleUnlinkTicket() {
+    unlinkTicket()
+  }
+
+  async function handleLinkTicket() {
+    if (!user) {
+      await signInOrSignUpWithOAuth()
+    }
+
     const { success } = z
       .string()
       .regex(/[A-Z0-9a-z]{4}-[A-Z0-9a-z]{2}-[A-Z0-9a-z]{4}/)
@@ -110,6 +150,7 @@ export default function Ticket() {
     <ScrollView
       contentContainerStyle={{ flexGrow: 1 }}
       showsVerticalScrollIndicator={false}
+      keyboardShouldPersistTaps="handled"
     >
       <SafeAreaView className="flex-1">
         <View className="bg-gray-950 flex-1 px-5 py-10">
@@ -156,7 +197,7 @@ export default function Ticket() {
 
           {ticket ? (
             <Button.Root
-              // onPress={handleUnlinkTicket}
+              onPress={handleUnlinkTicket}
               variant="danger"
               className="mt-5"
             >

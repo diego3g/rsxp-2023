@@ -31,8 +31,6 @@ export class AppController {
       },
     })
 
-    console.log(ticket)
-
     return { ticket }
   }
 
@@ -48,6 +46,10 @@ export class AppController {
         symplaTicketNumber: ticketNumber,
       },
     })
+
+    if (ticketAlreadyInUse && ticketAlreadyInUse.clerkUserId === userId) {
+      return
+    }
 
     if (ticketAlreadyInUse) {
       throw new HttpException(
