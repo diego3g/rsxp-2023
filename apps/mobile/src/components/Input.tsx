@@ -15,7 +15,7 @@ interface InputControlProps extends TextInputProps {}
 
 export function InputRoot({ children }: InputProps) {
   return (
-    <View className="w-full h-14 rounded bg-gray-800 flex flex-row items-center px-5">
+    <View className="w-full h-12 rounded bg-gray-800 flex flex-row items-center px-5">
       {children}
     </View>
   )
@@ -30,8 +30,8 @@ export function InputControl({ ...rest }: InputControlProps) {
     <TextInput
       placeholderTextColor={theme.colors.gray[400]}
       keyboardAppearance="dark"
-      className="w-full text-gray-100 font-body text-base pb-1"
-      textAlignVertical="top"
+      className="w-full text-gray-100"
+      style={{ fontSize: 16 }}
       {...rest}
     />
   )

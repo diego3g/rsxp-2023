@@ -1,8 +1,11 @@
-import { SafeAreaView, ScrollView, Text, View } from 'react-native'
+import { Alert, SafeAreaView, ScrollView, Text, View } from 'react-native'
 import { Ticket as TicketIcon, Question, Hash } from 'phosphor-react-native'
 import * as WebBrowser from 'expo-web-browser'
 import { useState } from 'react'
-import { useMutation } from '@tanstack/react-query'
+import { useMutation, useQuery } from '@tanstack/react-query'
+import { AxiosError } from 'axios'
+import { z } from 'zod'
+import { useAuth as useClerkAuth } from '@clerk/clerk-expo'
 
 import RocketImg from '@/assets/rocket.svg'
 import { Button } from '@/components/Button'
@@ -15,9 +18,71 @@ import { useAuth } from '@/hooks/useAuth'
 
 export default function Ticket() {
   const [ticketNumber, setTicketNumber] = useState('')
-  const { user, signInOrSignUpWithOAuth, getSessionInfo } = useAuth()
+  const { getToken } = useClerkAuth()
+  const { signInOrSignUpWithOAuth, user } = useAuth()
 
   useWarmUpBrowser()
+
+  const { data: ticket, isLoading: isLoadingTicket } = useQuery(
+    ['ticket'],
+    async () => {
+      const token = await getToken()
+
+      const response = await api.get('/tickets/link', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+
+      return response.data.ticket
+    },
+  )
+
+  const { mutateAsync: linkTicket } = useMutation(
+    async (ticketNumber: string) => {
+      if (!user) {
+        await signInOrSignUpWithOAuth()
+      }
+
+      const token = await getToken()
+
+      try {
+        await api.post(
+          '/tickets/link',
+          {
+            ticketNumber,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          },
+        )
+      } catch (err) {
+        if (err instanceof AxiosError) {
+          Alert.alert('Eita!', err.response?.data.message)
+        } else {
+          console.error(err)
+        }
+      }
+    },
+  )
+
+  function handleLinkTicket() {
+    const { success } = z
+      .string()
+      .regex(/[A-Z0-9a-z]{4}-[A-Z0-9a-z]{2}-[A-Z0-9a-z]{4}/)
+      .safeParse(ticketNumber)
+
+    if (success) {
+      linkTicket(ticketNumber)
+    } else {
+      Alert.alert(
+        'Formato inválido',
+        'O número do ticket possui o seguinte formato: XXXX-XX-XXXX',
+      )
+    }
+  }
 
   function handleBuyTicket() {
     WebBrowser.openBrowserAsync(
@@ -30,26 +95,15 @@ export default function Ticket() {
     )
   }
 
-  const { mutateAsync: linkTicket } = useMutation(
-    async (ticketNumber: string) => {
-      if (!user) {
-        await signInOrSignUpWithOAuth()
-      }
-
-      const { token } = await getSessionInfo()
-
-      const response = await api.get('/auth', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-
-      console.log(response.data)
-    },
-  )
-
-  function handleLinkTicket() {
-    linkTicket(ticketNumber)
+  function handleFindTicketNumberLink() {
+    WebBrowser.openBrowserAsync(
+      'https://ajuda.sympla.com.br/hc/pt-br/articles/115005427246-Como-fa%C3%A7o-para-ter-acesso-aos-meus-ingressos-',
+      {
+        presentationStyle: WebBrowser.WebBrowserPresentationStyle.POPOVER,
+        controlsColor: theme.colors.rocketseat.light,
+        toolbarColor: theme.colors.gray[900],
+      },
+    )
   }
 
   return (
@@ -73,24 +127,50 @@ export default function Ticket() {
             <Input.Icon>
               <Hash size={20} color={theme.colors.gray[400]} />
             </Input.Icon>
-            <Input.Control
-              placeholder="Número do ingresso no Sympla"
-              returnKeyType="send"
-              onChangeText={setTicketNumber}
-              value={ticketNumber}
-            />
+            {ticket ? (
+              <Input.Control
+                editable={false}
+                value={ticket.symplaTicketNumber}
+              />
+            ) : (
+              <Input.Control
+                autoCorrect={false}
+                autoCapitalize="none"
+                placeholder="Número do ingresso no Sympla"
+                returnKeyType="send"
+                onChangeText={setTicketNumber}
+                value={ticketNumber}
+              />
+            )}
           </Input.Root>
 
-          <LinkButton.Root className="mt-4">
+          <LinkButton.Root
+            onPress={handleFindTicketNumberLink}
+            className="mt-4"
+          >
             <LinkButton.Text>Como obter esse número?</LinkButton.Text>
             <LinkButton.Icon>
               <Question color={theme.colors.gray[300]} size={16} />
             </LinkButton.Icon>
           </LinkButton.Root>
 
-          <Button.Root onPress={handleLinkTicket} className="mt-5">
-            <Button.Text>VINCULAR INGRESSO À CONTA</Button.Text>
-          </Button.Root>
+          {ticket ? (
+            <Button.Root
+              // onPress={handleUnlinkTicket}
+              variant="danger"
+              className="mt-5"
+            >
+              <Button.Text>REMOVER INGRESSO</Button.Text>
+            </Button.Root>
+          ) : (
+            <Button.Root
+              isLoading={isLoadingTicket}
+              onPress={handleLinkTicket}
+              className="mt-5"
+            >
+              <Button.Text>VINCULAR INGRESSO À CONTA</Button.Text>
+            </Button.Root>
+          )}
 
           <View className="my-4 h-[1px] bg-gray-700" />
 

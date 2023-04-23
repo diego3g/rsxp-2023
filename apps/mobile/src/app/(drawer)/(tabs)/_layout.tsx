@@ -1,5 +1,5 @@
 import { Tabs } from 'expo-router'
-import { BookmarkSimple } from 'phosphor-react-native'
+import { Bookmark } from 'phosphor-react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 import { TabsHeader } from '@/components/TabsHeader'
@@ -35,7 +35,7 @@ export default function TabLayout() {
         options={{
           tabBarLabel: 'Ingresso',
           tabBarIcon: ({ focused, size }) => (
-            <TabIcon icon={BookmarkSimple} size={size} focused={focused} />
+            <TabIcon icon={Bookmark} size={size} focused={focused} />
           ),
         }}
       />
