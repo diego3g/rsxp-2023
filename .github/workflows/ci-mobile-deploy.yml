@@ -2,8 +2,8 @@ name: CI - Mobile deploy
 
 on:
   push:
-    paths:
-      - 'apps/mobile/**'
+    # paths:
+    #   - 'apps/mobile/**'
     branches:
       - main
 
@@ -25,6 +25,7 @@ jobs:
         uses: expo/expo-github-action@v8
         with:
           eas-version: latest
+          packager: npm
           token: ${{ secrets.EAS_EXPO_TOKEN }}
 
       - name: Install dependencies
