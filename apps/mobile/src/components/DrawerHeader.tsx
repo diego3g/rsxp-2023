@@ -1,7 +1,6 @@
 import { Text, TouchableOpacity, View } from 'react-native'
 import { useNavigation } from 'expo-router/src/useNavigation'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
-
 import { CaretLeft } from 'phosphor-react-native'
 
 import { theme } from '@/theme/index'

@@ -8,10 +8,8 @@ import {
 } from '@expo-google-fonts/roboto'
 
 import { AppProvider } from '@/contexts/AppProvider'
-
 import CustomDrawerContent from '@/components/CustomDrawerContent'
 import { DrawerHeader } from '@/components/DrawerHeader'
-
 import { theme } from '@/theme/index'
 import { Loading } from '@/components/Loading'
 

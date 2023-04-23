@@ -1,6 +1,7 @@
 import { TextInput, View, TextInputProps } from 'react-native'
-import { theme } from '@/theme/index'
 import { ReactNode } from 'react'
+
+import { theme } from '@/theme/index'
 
 interface InputProps {
   children?: ReactNode
@@ -30,6 +31,7 @@ export function InputControl({ ...rest }: InputControlProps) {
       placeholderTextColor={theme.colors.gray[400]}
       keyboardAppearance="dark"
       className="w-full text-gray-100 font-body text-base pb-1"
+      textAlignVertical="top"
       {...rest}
     />
   )

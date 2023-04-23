@@ -1,4 +1,5 @@
 import { ActivityIndicator, View } from 'react-native'
+
 import { theme } from '@/theme/index'
 
 export function Loading() {

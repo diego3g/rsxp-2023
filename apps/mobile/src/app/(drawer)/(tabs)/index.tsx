@@ -1,6 +1,8 @@
 import { SafeAreaView, ScrollView, Text, View } from 'react-native'
 import { Ticket as TicketIcon, Question, Hash } from 'phosphor-react-native'
 import * as WebBrowser from 'expo-web-browser'
+import { useState } from 'react'
+import { useMutation } from '@tanstack/react-query'
 
 import RocketImg from '@/assets/rocket.svg'
 import { Button } from '@/components/Button'
@@ -8,8 +10,6 @@ import { theme } from '@/theme/index'
 import { LinkButton } from '@/components/LinkButton'
 import { Input } from '@/components/Input'
 import { useWarmUpBrowser } from '@/hooks/useWarmUpBrowser'
-import { useState } from 'react'
-import { useMutation } from '@tanstack/react-query'
 import { api } from '@/lib/axios'
 import { useAuth } from '@/hooks/useAuth'
 

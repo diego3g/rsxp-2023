@@ -7,18 +7,16 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { useNavigation } from 'expo-router/src/useNavigation'
 import { DrawerActions } from '@react-navigation/routers'
 import * as WebBrowser from 'expo-web-browser'
-
 import { X } from 'phosphor-react-native'
+import { Link } from 'expo-router'
 
-import AuthenticationSvg from '@/assets/authentication.svg'
-import CredentialSvg from '@/assets/credential.svg'
-
-import { DrawerItem } from '@/components/DrawerItem'
+import { useAuth } from '@/hooks/useAuth'
 import { theme } from '@/theme/index'
+import { DrawerItem } from '@/components/DrawerItem'
+import CredentialSvg from '@/assets/credential.svg'
+import AuthenticationSvg from '@/assets/authentication.svg'
 
 import { version } from '../../package.json'
-import { Link } from 'expo-router'
-import { useAuth } from '@/hooks/useAuth'
 
 export default function CustomDrawerContent(
   props: DrawerContentComponentProps,
