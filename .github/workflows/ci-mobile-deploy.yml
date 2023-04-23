@@ -6,9 +6,6 @@ on:
       - 'apps/mobile/**'
     branches:
       - main
-  pull_request:
-    branches:
-      - main
 
 jobs:
   build:
