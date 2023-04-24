@@ -22,7 +22,10 @@
         "serviceAccountKeyPath": "./google-services.json",
         "releaseStatus": "draft"
       },
-      "ios": {}
+      "ios": {
+        "appleId": "rodrigo.goncalves@rocketseat.team",
+        "ascAppId": "6447650698"
+      }
     }
   }
 }
