@@ -1,5 +1,12 @@
-import { ScrollView, Text, View, Image } from 'react-native'
-import { LinearGradient } from 'expo-linear-gradient'
+import {
+  ScrollView,
+  Text,
+  View,
+  Image,
+  ImageBackground,
+  TouchableOpacity,
+  TextInput,
+} from 'react-native'
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler'
 import {
   AppleLogo,
@@ -7,78 +14,74 @@ import {
   Copy,
   ShareNetwork,
 } from 'phosphor-react-native'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 import { TabIcon } from '@/components/TabIcon'
 import { Button } from '@/components/Button'
 import GithubLogoSvg from '@/assets/github-icon.svg'
-import RocketseatLogoSvg from '@/assets/rocketseat-logo.svg'
-import RsxpLogo from '@/assets/rsxp-logo.svg'
 import QrCodeSvg from '@/assets/QRCode.svg'
-
-import backgroundTicketPng from '../../assets/cracha-background.png'
+import { theme } from '@/theme/index'
+import backgroundBlur from '@/assets/ticket-background-blur.png'
+import ticketHeader from '@/assets/ticket-header.png'
+import ticketBand from '@/assets/ticket-band.png'
+import RsxpLogo from '@/assets/rsxp-logo.svg'
 
 export default function Credential() {
+  const insets = useSafeAreaInsets()
+
   return (
     <ScrollView
-      contentContainerStyle={{ flexGrow: 1 }}
+      className="bg-zinc-950"
+      contentContainerStyle={{ paddingBottom: insets.bottom + 24 }}
       showsVerticalScrollIndicator={false}
     >
-      <View className="h-screen w-screen bg-gray-950 flex-1 items-center px-4 relative bg-[url(/assets/cracha-background.png)]">
-        <View className="items-center mb-[500px]">
-          <LinearGradient
-            colors={['#202024', '#121214']}
-            className="w-20 h-[101px] items-center justify-center overflow-hidden z-[1] mb-1"
-            start={[0.1, 0]}
-            end={[0.1, 0]}
+      <ImageBackground
+        source={backgroundBlur}
+        imageStyle={{ width: 975, left: '-50%', opacity: 0.6 }}
+        className="items-center px-5"
+      >
+        <Image source={ticketBand} className="absolute z-10 -top-36" alt="" />
+
+        <View className="bg-black/50 self-stretch items-center pb-6 mt-10 border border-white/10 mx-3 rounded-2xl">
+          <ImageBackground
+            source={ticketHeader}
+            imageStyle={{
+              borderTopRightRadius: 16,
+              borderTopLeftRadius: 16,
+            }}
+            className="px-6 py-8 h-40 self-stretch"
           >
-            <RocketseatLogoSvg />
-          </LinearGradient>
-
-          <View className="w-full h-max bg-background overflow-hidden items-center justify-center border-[1px] border-gray-50 rounded-2xl absolute top-20 z-[-1] backdrop-opacity-5">
-            <View className="w-24 h-[10] mt-4 bg-gray-950 rounded-full" />
-
-            <Image
-              source={backgroundTicketPng}
-              alt="background ticket"
-              resizeMode="cover"
-              className="w-full z-[-2] absolute top-0"
-            />
-            <View className="w-full flex-row items-center justify-between px-6">
-              <RsxpLogo />
-
-              <Text className="text-white font-bold text-sm">#00192</Text>
+            <View className="flex-row items-center justify-between">
+              <RsxpLogo width={124} height={20} />
+              <Text className="text-zinc-50 text-sm font-heading">#00183</Text>
             </View>
+          </ImageBackground>
 
-            <View className="w-[170px] h-[170px] bg-gray-900 rounded-full flex items-center justify-center mt-8 mb-6">
-              <Image
-                source={{ uri: 'https://github.com/diego3g.png' }}
-                alt="Diego Fernandes"
-                resizeMode="contain"
-                className="w-36 h-36 rounded-full"
-              />
-            </View>
+          <Image
+            source={{ uri: 'https://github.com/diego3g.png' }}
+            className="w-40 h-40 rounded-full self-center -mt-16"
+            alt=""
+          />
 
-            <Text className="text-white font-bold text-2xl">
-              Diego Fernandes
+          <Text className="font-heading text-2xl text-zinc-50 mt-4">
+            Diego Fernandes
+          </Text>
+          <Text className="font-body text-base text-zinc-300">
+            CTO @Rocketseat
+          </Text>
+
+          <QrCodeSvg className="mt-6" />
+
+          <TouchableOpacity activeOpacity={0.7} className="mt-6">
+            <Text className="font-body text-rocketseat-light text-sm">
+              Ampliar QRCode
             </Text>
-
-            <Text className="text-gray-200 text-base mb-6">
-              CTO @Rocketseat
-            </Text>
-
-            <QrCodeSvg />
-
-            <TouchableWithoutFeedback className="mt-6 mb-6">
-              <Text className="text-sm text-rocketseat-light">
-                Ampliar QRCode
-              </Text>
-            </TouchableWithoutFeedback>
-          </View>
+          </TouchableOpacity>
         </View>
 
-        <TouchableWithoutFeedback className="px-5 mb-5 mt-8">
+        <View className="mb-5 mt-8">
           <TabIcon icon={CaretDoubleDown} size={25} focused={false} />
-        </TouchableWithoutFeedback>
+        </View>
 
         <View className="self-start mb-6">
           <Text className="text-2xl font-bold text-gray-100 mb-1">
@@ -89,52 +92,55 @@ export default function Credential() {
             Mostre ao mundo que você vai participar do RS/XP 2023!
           </Text>
         </View>
+
         <View className="w-full gap-y-4 mb-12">
           <Button.Root variant="primary">
             <Button.Icon>
-              <ShareNetwork size={22} weight="bold" color="#FFFFFF" />
+              <ShareNetwork
+                size={22}
+                weight="bold"
+                color={theme.colors.white}
+              />
             </Button.Icon>
             <Button.Text>COMPARTILHAR</Button.Text>
           </Button.Root>
           <Button.Root variant="normal">
             <Button.Icon>
-              <AppleLogo size={22} weight="fill" color="#FFFFFF" />
+              <AppleLogo size={22} weight="fill" color={theme.colors.white} />
             </Button.Icon>
             <Button.Text>ADICIONAR AO WALLET</Button.Text>
           </Button.Root>
         </View>
 
-        <View className="w-full ">
-          <View className="flex-row justify-between mb-2">
-            <Text className="text-sm font-medium text-gray-100">
+        <View className="self-stretch">
+          <View className="flex-row justify-between mb-3">
+            <Text className="text-base font-subtitle text-gray-100">
               Embed code
             </Text>
 
-            <TouchableWithoutFeedback className="flex-row gap-x-2">
-              <Copy size={25} color="#c4c4cc" />
-              <Text className="text-sm font-medium text-gray-100">
+            <TouchableWithoutFeedback className="flex-row items-center gap-x-2">
+              <Copy size={20} color={theme.colors.gray['100']} />
+              <Text className="text-sm font-subtitle text-gray-100">
                 Copiar código
               </Text>
             </TouchableWithoutFeedback>
           </View>
 
-          <View className="w-full bg-gray-800 rounded-md px-4 pt-3 mb-5">
-            <Text className="text-gray-200 text-sm leading-6">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been standard dummy text ever since the
-              1500s, when an unknown printer took a galley of type and scrambled
-              it to make a type specimen book. It has survived...
-            </Text>
-          </View>
+          <TextInput
+            textAlignVertical="top"
+            multiline
+            className="bg-gray-800 h-24 rounded-md px-4 pt-3 pb-3 text-gray-200 font-body text-base leading-6"
+            value="Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia, qui at odit molestias temporibus eaque consectetur numquam quibusdam autem? Dolorem unde iste dicta, nihil illum eaque quibusdam est repellat tempore?"
+          />
 
-          <TouchableWithoutFeedback className="flex-row items-center gap-x-2">
+          <TouchableWithoutFeedback className="flex-row items-center gap-x-2 mt-4">
             <GithubLogoSvg />
-            <Text className="text-base font-medium text-rocketseat-light">
+            <Text className="text-base font-subtitle text-rocketseat-light">
               Adicionar credencial ao Github
             </Text>
           </TouchableWithoutFeedback>
         </View>
-      </View>
+      </ImageBackground>
     </ScrollView>
   )
 }
