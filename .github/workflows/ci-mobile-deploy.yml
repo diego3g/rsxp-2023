@@ -41,8 +41,6 @@ jobs:
 
       - name: Build
         run: eas build --platform all --profile production --non-interactive --detached --wait-time 0
-        background: true
 
       - name: Submit
         run: EXPO_APPLE_APP_SPECIFIC_PASSWORD=${{ secrets.EAS_APPLE_APP_SPECIFIC_PASSWORD }} eas submit --platform all --profile preview --latest --detached --wait-time 0
-        background: true
