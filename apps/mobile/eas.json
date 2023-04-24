@@ -1,0 +1,31 @@
+{
+  "cli": {
+    "version": ">= 3.9.1",
+    "appVersionSource": "remote"
+  },
+  "build": {
+    "production": {
+      "autoIncrement": true,
+      "android": {
+        "autoIncrement": "versionCode"
+      },
+      "ios": {
+        "resourceClass": "m-medium",
+        "autoIncrement": "buildNumber"
+      }
+    }
+  },
+  "submit": {
+    "preview": {
+      "android": {
+        "track": "internal",
+        "serviceAccountKeyPath": "./google-services.json",
+        "releaseStatus": "draft"
+      },
+      "ios": {
+        "appleId": "diego@rocketseat.team",
+        "ascAppId": "6447650698"
+      }
+    }
+  }
+}
