@@ -2,8 +2,6 @@ name: CI - Mobile deploy
 
 on:
   push:
-    paths:
-      - 'apps/mobile/**'
     branches:
       - main
 
@@ -11,7 +9,10 @@ jobs:
   build:
     name: Mobile Deploy
     runs-on: ubuntu-latest
-    
+    defaults:
+      run:
+        working-directory: 'apps/mobile'
+
     steps:     
       - uses: actions/checkout@v3
 
