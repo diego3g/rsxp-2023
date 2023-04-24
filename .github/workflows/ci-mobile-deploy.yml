@@ -2,8 +2,8 @@ name: CI - Mobile deploy
 
 on:
   push:
-    # paths:
-    #   - 'apps/mobile/**'
+    paths:
+      - 'apps/mobile/**'
     branches:
       - main
 
