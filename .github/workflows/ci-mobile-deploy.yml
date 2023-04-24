@@ -40,7 +40,7 @@ jobs:
           base64 -d -i google-services.json.b64 > google-services.json
 
       - name: Build and Submit
-        run: EXPO_APPLE_APP_SPECIFIC_PASSWORD=${{ secrets.EAS_APPLE_APP_SPECIFIC_PASSWORD }} eas build --platform all --profile production --non-interactive --auto-submit-with-profile=preview --auto-submit --no-wait
+        run: EXPO_APPLE_APP_SPECIFIC_PASSWORD=${{ secrets.EAS_APPLE_APP_SPECIFIC_PASSWORD }} eas build --platform all --profile production --non-interactive --auto-submit-with-profile=preview --no-wait
 
       #- name: Submit
         #run: EXPO_APPLE_APP_SPECIFIC_PASSWORD=${{ secrets.EAS_APPLE_APP_SPECIFIC_PASSWORD }} eas submit --platform all --profile preview --latest --no-wait
