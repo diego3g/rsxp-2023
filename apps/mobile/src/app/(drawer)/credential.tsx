@@ -1,4 +1,4 @@
-import { ScrollView, Text, View } from 'react-native'
+import { ScrollView, Text, View, Image } from 'react-native'
 
 import { LinearGradient } from 'expo-linear-gradient'
 import { TabIcon } from '@/components/TabIcon'
@@ -16,6 +16,7 @@ import GithubLogoSvg from '@/assets/github-icon.svg'
 import RocketseatLogoSvg from '@/assets/rocketseat-logo.svg'
 import RsxpLogo from '@/assets/rsxp-logo.svg'
 import QrCodeSvg from '@/assets/QRCode.svg'
+import backgroundTicketPng from '../../assets/cracha-background.png'
 
 export default function Credential() {
   return (
@@ -23,8 +24,8 @@ export default function Credential() {
       contentContainerStyle={{ flexGrow: 1 }}
       showsVerticalScrollIndicator={false}
     >
-      <View className="bg-gray-950 flex-1 items-center px-4 relative ">
-        <View className="items-center mb-80">
+      <View className="h-screen w-screen bg-gray-950 flex-1 items-center px-4 relative bg-[url(/assets/cracha-background.png)]">
+        <View className="items-center mb-[500px]">
           <LinearGradient
             colors={['#202024', '#121214']}
             className="w-20 h-[101px] items-center justify-center overflow-hidden z-[1] mb-1"
@@ -34,12 +35,28 @@ export default function Credential() {
             <RocketseatLogoSvg />
           </LinearGradient>
 
-          <View className="w-full h-max bg-background items-center justify-center p-6 border-[1px] border-gray-50 rounded-2xl absolute top-20 z-[-1] backdrop-opacity-5">
-            <View className="w-24 h-[10] mt-[-11px] bg-white rounded-full" />
+          <View className="w-full h-max bg-background overflow-hidden items-center justify-center border-[1px] border-gray-50 rounded-2xl absolute top-20 z-[-1] backdrop-opacity-5">
+            <View className="w-24 h-[10] mt-4 bg-gray-950 rounded-full" />
+
+            <Image
+              source={backgroundTicketPng}
+              alt="background ticket"
+              resizeMode="cover"
+              className="w-full z-[-2] absolute top-0"
+            />
             <View className="w-full flex-row items-center justify-between px-6">
               <RsxpLogo />
 
               <Text className="text-white font-bold text-sm">#00192</Text>
+            </View>
+
+            <View className="w-[170px] h-[170px] bg-gray-900 rounded-full flex items-center justify-center mt-8 mb-6">
+              <Image
+                source={{ uri: 'https://github.com/diego3g.png' }}
+                alt="Diego Fernandes"
+                resizeMode="contain"
+                className="w-36 h-36 rounded-full"
+              />
             </View>
 
             <Text className="text-white font-bold text-2xl">
@@ -52,7 +69,7 @@ export default function Credential() {
 
             <QrCodeSvg />
 
-            <TouchableWithoutFeedback className="mt-6">
+            <TouchableWithoutFeedback className="mt-6 mb-6">
               <Text className="text-sm text-rocketseat-light">
                 Ampliar QRCode
               </Text>
