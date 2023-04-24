@@ -27,7 +27,6 @@ export default function Ticket() {
   const { data: ticket, isInitialLoading: isLoadingTicket } = useQuery(
     ['ticket'],
     async () => {
-
       const token = await getToken()
 
       const response = await api.get('/tickets/link', {
@@ -35,7 +34,6 @@ export default function Ticket() {
           Authorization: `Bearer ${token}`,
         },
       })
-
 
       return response.data.ticket
     },
