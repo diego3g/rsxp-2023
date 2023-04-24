@@ -8,12 +8,13 @@ import { useNavigation } from 'expo-router/src/useNavigation'
 import { DrawerActions } from '@react-navigation/routers'
 import * as WebBrowser from 'expo-web-browser'
 import { X } from 'phosphor-react-native'
-// import { Link } from 'expo-router'
+import { Link } from 'expo-router'
+import React from 'react'
 
 import { useAuth } from '@/hooks/useAuth'
 import { theme } from '@/theme/index'
 import { DrawerItem } from '@/components/DrawerItem'
-// import CredentialSvg from '@/assets/credential.svg'
+import CredentialSvg from '@/assets/credential.svg'
 import AuthenticationSvg from '@/assets/authentication.svg'
 
 import { version } from '../../package.json'
@@ -70,7 +71,7 @@ export default function CustomDrawerContent(
       </TouchableOpacity>
 
       <DrawerContentScrollView {...props}>
-        {/* <Link href="credential" asChild>
+        <Link href="credential" asChild>
           <DrawerItem
             icon={CredentialSvg}
             title="Minha credencial"
@@ -78,7 +79,7 @@ export default function CustomDrawerContent(
             isMenuOption
             {...props}
           />
-        </Link> */}
+        </Link>
         <DrawerItem
           onPress={handleAuthLink}
           icon={AuthenticationSvg}

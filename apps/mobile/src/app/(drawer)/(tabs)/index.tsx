@@ -149,6 +149,7 @@ export default function Ticket() {
   return (
     <ScrollView
       contentContainerStyle={{ flexGrow: 1 }}
+      className="bg-zinc-950"
       showsVerticalScrollIndicator={false}
       keyboardShouldPersistTaps="handled"
     >
