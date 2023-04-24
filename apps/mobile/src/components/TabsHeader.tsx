@@ -1,5 +1,4 @@
 import { TouchableOpacity, View } from 'react-native'
-
 import { DrawerActions } from '@react-navigation/routers'
 import { useNavigation } from 'expo-router/src/useNavigation'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'

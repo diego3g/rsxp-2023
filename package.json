@@ -4,9 +4,6 @@
   "private": true,
   "description": "Repositório do app do RS/XP 2023 construído pela comunidade da Rocketseat.",
   "license": "MIT",
-  "workspaces": [
-    "apps/*"
-  ],
   "scripts": {
     "husky:prepare": "husky install"
   },

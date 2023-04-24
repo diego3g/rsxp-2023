@@ -1,17 +1,22 @@
 {
   "expo": {
     "name": "rsxp",
-    "slug": "rsxp",
-    "scheme": "myapp",
+    "slug": "rsxp-2023",
+    "owner": "rocketseat",
     "version": "1.0.0",
     "scheme": "rsxp",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
+    "userInterfaceStyle": "dark",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "cover",
       "backgroundColor": "#09090A"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "c48f6b63-aabc-4942-8c37-12dab1d7259e"
+      }
     },
     "assetBundlePatterns": [
       "**/*"

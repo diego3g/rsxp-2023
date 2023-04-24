@@ -6,5 +6,5 @@ import { BASE_URL } from '@env'
 // }
 
 export const api = axios.create({
-  baseURL: BASE_URL,
+  baseURL: 'http://localhost:3333',
 })

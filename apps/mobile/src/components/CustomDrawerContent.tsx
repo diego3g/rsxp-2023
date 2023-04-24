@@ -1,4 +1,4 @@
-import { TouchableOpacity, View, Text } from 'react-native'
+import { TouchableOpacity, View, Text, Alert } from 'react-native'
 import {
   DrawerContentScrollView,
   DrawerContentComponentProps,
@@ -6,14 +6,15 @@ import {
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { useNavigation } from 'expo-router/src/useNavigation'
 import { DrawerActions } from '@react-navigation/routers'
-
+import * as WebBrowser from 'expo-web-browser'
 import { X } from 'phosphor-react-native'
+// import { Link } from 'expo-router'
 
+import { useAuth } from '@/hooks/useAuth'
+import { theme } from '@/theme/index'
+import { DrawerItem } from '@/components/DrawerItem'
+// import CredentialSvg from '@/assets/credential.svg'
 import AuthenticationSvg from '@/assets/authentication.svg'
-import CredentialSvg from '@/assets/credential.svg'
-
-import DrawerItem from '@/components/DrawerItem'
-import theme from '@/theme/index'
 
 import { version } from '../../package.json'
 
@@ -22,29 +23,64 @@ export default function CustomDrawerContent(
 ) {
   const insets = useSafeAreaInsets()
   const navigation = useNavigation()
+  const { user, signInOrSignUpWithOAuth, signOut } = useAuth()
+
+  function handleHelpLink() {
+    WebBrowser.openBrowserAsync('https://www.rocketseat.com.br/help', {
+      presentationStyle: WebBrowser.WebBrowserPresentationStyle.POPOVER,
+      controlsColor: theme.colors.rocketseat.light,
+      toolbarColor: theme.colors.gray[900],
+    })
+  }
+
+  async function handleAuthLink() {
+    if (!user) {
+      await signInOrSignUpWithOAuth()
+    } else {
+      Alert.alert(
+        'Deseja sair?',
+        'Você já se autenticou, deseja sair da sua conta?',
+        [
+          {
+            text: 'Cancelar',
+            style: 'cancel',
+          },
+          {
+            text: 'Sair',
+            style: 'destructive',
+            onPress: signOut,
+          },
+        ],
+        {
+          userInterfaceStyle: 'dark',
+        },
+      )
+    }
+  }
 
   return (
-    <View className="flex-1 justify-evenly">
+    <View className="flex-1">
       <TouchableOpacity
-        className="w-full h-26 pb-4"
-        style={{ paddingTop: insets.top }}
+        className="w-full h-26 mx-6 pb-4"
+        style={{ paddingTop: insets.top + 8 }}
         activeOpacity={0.7}
         onPress={() => navigation.dispatch(DrawerActions.closeDrawer())}
       >
-        <X size={32} color={theme?.colors?.gray[100]} />
+        <X size={32} color={theme.colors.gray[200]} />
       </TouchableOpacity>
 
       <DrawerContentScrollView {...props}>
+        {/* <Link href="credential" asChild>
+          <DrawerItem
+            icon={CredentialSvg}
+            title="Minha credencial"
+            subtitle="Seu perfil, redes sociais e acesso"
+            isMenuOption
+            {...props}
+          />
+        </Link> */}
         <DrawerItem
-          href="credential"
-          icon={CredentialSvg}
-          title="Minha credencial"
-          subtitle="Seu perfil, redes sociais e acesso"
-          isMenuOption
-          {...props}
-        />
-        <DrawerItem
-          href="authentication"
+          onPress={handleAuthLink}
           icon={AuthenticationSvg}
           title="Autenticação"
           subtitle="Seus dados de acesso"
@@ -54,11 +90,15 @@ export default function CustomDrawerContent(
       </DrawerContentScrollView>
 
       <View className="absolute bottom-0 left-0 right-0">
-        <View style={{ paddingBottom: insets.bottom + 16 }}>
-          <DrawerItem href="help" title="Preciso de ajuda" {...props} />
+        <View className="mb-5">
+          <DrawerItem
+            onPress={handleHelpLink}
+            title="Preciso de ajuda"
+            {...props}
+          />
         </View>
 
-        <View className="pb-8 pt-5">
+        <View className="mb-5" style={{ paddingBottom: insets.bottom }}>
           <Text className="text-gray-400 text-center">
             RSXP 2023 - App v{version}
           </Text>

@@ -34,7 +34,9 @@ export function LinkButtonIcon({ children }: LinkButtonIconProps) {
 }
 
 export function LinkButtonText({ children }: LinkButtonTextProps) {
-  return <Text className="text-sm text-gray-300 font-subtitle">{children}</Text>
+  return (
+    <Text className="text-base text-gray-300 font-subtitle">{children}</Text>
+  )
 }
 
 export const LinkButton = {
