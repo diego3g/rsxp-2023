@@ -29,7 +29,10 @@ jobs:
           token: ${{ secrets.EAS_EXPO_TOKEN }}
 
       - name: Install dependencies
-        run: npm ci
+        run: |
+          npm install -g expo-cli
+          expo install
+          npm ci
 
       - name: Get config file
         env:
