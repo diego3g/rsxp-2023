@@ -8,8 +8,6 @@ export default function Credential() {
     <View className="bg-gray-950 flex-1 items-center justify-center">
       <Text className="text-gray-100 font-bold text-2xl">Minha Credencial</Text>
 
-      <Text>Teste</Text>
-
       <Button title="Voltar" onPress={back} />
     </View>
   )
