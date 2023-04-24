@@ -1,10 +1,6 @@
 import { ScrollView, Text, View, Image } from 'react-native'
-
 import { LinearGradient } from 'expo-linear-gradient'
-import { TabIcon } from '@/components/TabIcon'
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler'
-import { Button } from '@/components/Button'
-
 import {
   AppleLogo,
   CaretDoubleDown,
@@ -12,10 +8,13 @@ import {
   ShareNetwork,
 } from 'phosphor-react-native'
 
+import { TabIcon } from '@/components/TabIcon'
+import { Button } from '@/components/Button'
 import GithubLogoSvg from '@/assets/github-icon.svg'
 import RocketseatLogoSvg from '@/assets/rocketseat-logo.svg'
 import RsxpLogo from '@/assets/rsxp-logo.svg'
 import QrCodeSvg from '@/assets/QRCode.svg'
+
 import backgroundTicketPng from '../../assets/cracha-background.png'
 
 export default function Credential() {
