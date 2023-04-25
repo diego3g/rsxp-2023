@@ -6,6 +6,7 @@ import {
   ImageBackground,
   TouchableOpacity,
   TextInput,
+  useWindowDimensions,
 } from 'react-native'
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler'
 import {
@@ -15,6 +16,9 @@ import {
   ShareNetwork,
 } from 'phosphor-react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import { MotiView } from 'moti'
+import { Skeleton } from 'moti/skeleton'
+import { useState } from 'react'
 
 import { TabIcon } from '@/components/TabIcon'
 import { Button } from '@/components/Button'
@@ -28,6 +32,9 @@ import RsxpLogo from '@/assets/rsxp-logo.svg'
 
 export default function Credential() {
   const insets = useSafeAreaInsets()
+  const { height } = useWindowDimensions()
+
+  const [isAvatarLoaded, setIsAvatarLoaded] = useState(false)
 
   return (
     <ScrollView
@@ -40,44 +47,92 @@ export default function Credential() {
         imageStyle={{ width: 975, left: '-50%', opacity: 0.6 }}
         className="items-center px-5"
       >
-        <Image source={ticketBand} className="absolute z-10 -top-36" alt="" />
+        <MotiView
+          className="self-stretch items-center"
+          from={{
+            opacity: 0,
+            transform: [
+              {
+                translateY: -height,
+              },
+            ],
+            rotateZ: '70deg',
+            rotateY: '30deg',
+            rotateX: '30deg',
+          }}
+          animate={{
+            opacity: 1,
+            transform: [
+              {
+                translateY: 0,
+              },
+            ],
+            rotateZ: '0deg',
+            rotateY: '0deg',
+            rotateX: '0deg',
+          }}
+          transition={{
+            type: 'spring',
+            delay: 250,
+            rotateZ: {
+              type: 'spring',
+              delay: 150,
+            },
+          }}
+        >
+          <Image source={ticketBand} className="absolute z-10 -top-36" alt="" />
 
-        <View className="bg-black/50 self-stretch items-center pb-6 mt-10 border border-white/10 mx-3 rounded-2xl">
-          <ImageBackground
-            source={ticketHeader}
-            imageStyle={{
-              borderTopRightRadius: 16,
-              borderTopLeftRadius: 16,
-            }}
-            className="px-6 py-8 h-40 self-stretch"
-          >
-            <View className="flex-row items-center justify-between">
-              <RsxpLogo width={124} height={20} />
-              <Text className="text-zinc-50 text-sm font-heading">#00183</Text>
-            </View>
-          </ImageBackground>
+          <View className="bg-black/50 self-stretch items-center pb-6 mt-10 border border-white/10 mx-3 rounded-2xl">
+            <ImageBackground
+              source={ticketHeader}
+              imageStyle={{
+                borderTopRightRadius: 16,
+                borderTopLeftRadius: 16,
+              }}
+              className="px-6 py-8 h-40 self-stretch"
+            >
+              <View className="flex-row items-center justify-between">
+                <RsxpLogo width={124} height={20} />
+                <Text className="text-zinc-50 text-sm font-heading">
+                  #00183
+                </Text>
+              </View>
+            </ImageBackground>
 
-          <Image
-            source={{ uri: 'https://github.com/diego3g.png' }}
-            className="w-40 h-40 rounded-full self-center -mt-16"
-            alt=""
-          />
+            {!isAvatarLoaded && (
+              <View className="absolute mt-24 z-0">
+                <Skeleton
+                  colors={[theme.colors.gray[700], theme.colors.gray[500]]}
+                  height={160}
+                  width={160}
+                  radius={'round'}
+                />
+              </View>
+            )}
 
-          <Text className="font-heading text-2xl text-zinc-50 mt-4">
-            Diego Fernandes
-          </Text>
-          <Text className="font-body text-base text-zinc-300">
-            CTO @Rocketseat
-          </Text>
+            <Image
+              source={{ uri: 'https://github.com/rodrigorgtic.png' }}
+              className="w-40 h-40 rounded-full self-center -mt-16"
+              alt=""
+              onLoad={() => setIsAvatarLoaded(true)}
+            />
 
-          <QrCodeSvg className="mt-6" />
-
-          <TouchableOpacity activeOpacity={0.7} className="mt-6">
-            <Text className="font-body text-rocketseat-light text-sm">
-              Ampliar QRCode
+            <Text className="font-heading text-2xl text-zinc-50 mt-4">
+              Diego Fernandes
             </Text>
-          </TouchableOpacity>
-        </View>
+            <Text className="font-body text-base text-zinc-300">
+              CTO @Rocketseat
+            </Text>
+
+            <QrCodeSvg className="mt-6" />
+
+            <TouchableOpacity activeOpacity={0.7} className="mt-6">
+              <Text className="font-body text-rocketseat-light text-sm">
+                Ampliar QRCode
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </MotiView>
 
         <View className="mb-5 mt-8">
           <TabIcon icon={CaretDoubleDown} size={25} focused={false} />
