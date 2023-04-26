@@ -19,6 +19,10 @@ import { SymplaService } from './sympla/sympla.service'
 @Controller()
 export class AppController {
   constructor(private prisma: PrismaService, private sympla: SymplaService) {}
+  @Get()
+  handleGet(): {message: string} {
+    return { message: 'online' }
+  }
 
   @Get('/tickets/link')
   @UseGuards(ClerkGuard)
