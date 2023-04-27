@@ -1,0 +1,43 @@
+name: CI - Mobile deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Mobile Deploy
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: 'apps/mobile'
+
+    steps:     
+      - uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+          cache: npm
+
+      - name: Setup EAS
+        uses: expo/expo-github-action@v8
+        with:
+          eas-version: latest
+          packager: npm
+          token: ${{ secrets.EAS_EXPO_TOKEN }}
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Get config file
+        env:
+          GOOGLE_SERVICES_64: ${{ secrets.EAS_GOOGLE_PLAY_API }}
+        run: |
+          echo $GOOGLE_SERVICES_64 > google-services.json.b64
+          base64 -d -i google-services.json.b64 > google-services.json
+
+      - name: Build and Submit
+        run: EXPO_APPLE_APP_SPECIFIC_PASSWORD=${{ secrets.EAS_APPLE_APP_SPECIFIC_PASSWORD }} eas build --platform all --profile production --non-interactive --auto-submit-with-profile=preview --no-wait

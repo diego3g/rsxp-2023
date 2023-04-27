@@ -8,7 +8,7 @@ import {
 } from 'react-native'
 import { clsx } from 'clsx'
 
-import theme from '@/theme/index'
+import { theme } from '@/theme/index'
 
 interface ButtonProps extends TouchableOpacityProps {
   children: ReactNode
@@ -33,6 +33,7 @@ function ButtonRoot({
   return (
     <TouchableOpacity
       disabled={isLoading}
+      activeOpacity={0.7}
       className={clsx(
         'h-[52px] w-full rounded-md flex flex-row items-center justify-center transition-colors',
         {
@@ -46,11 +47,7 @@ function ButtonRoot({
       )}
       {...rest}
     >
-      {isLoading ? (
-        <ActivityIndicator color={theme?.colors?.white as string} />
-      ) : (
-        children
-      )}
+      {isLoading ? <ActivityIndicator color={theme.colors.white} /> : children}
     </TouchableOpacity>
   )
 }

@@ -3,6 +3,7 @@ import { NestFactory } from '@nestjs/core'
 import { AppModule } from './app.module'
 import helmet from 'helmet'
 import { Logger } from '@nestjs/common'
+import { ClerkExpressWithAuth } from '@clerk/clerk-sdk-node'
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
@@ -10,6 +11,7 @@ async function bootstrap() {
   })
 
   app.use(helmet())
+  app.use(ClerkExpressWithAuth())
 
   await app.listen(3333)
 
