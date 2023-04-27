@@ -15,6 +15,7 @@ import { useAuth } from '@/hooks/useAuth'
 import { theme } from '@/theme/index'
 import { DrawerItem } from '@/components/DrawerItem'
 import CredentialSvg from '@/assets/credential.svg'
+import MapSvg from '@/assets/map.svg'
 import AuthenticationSvg from '@/assets/authentication.svg'
 
 import { version } from '../../package.json'
@@ -88,6 +89,15 @@ export default function CustomDrawerContent(
           isMenuOption
           {...props}
         />
+        <Link href="eventMap" asChild>
+          <DrawerItem
+            icon={MapSvg}
+            title="Mapa do Evento"
+            subtitle="Veja os estandartes e onde estão"
+            isMenuOption
+            {...props}
+          />
+        </Link>
       </DrawerContentScrollView>
 
       <View className="absolute bottom-0 left-0 right-0">
