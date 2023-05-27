@@ -8,6 +8,9 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "dark",
+    "plugins": [
+      "@config-plugins/detox"
+    ],
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "cover",
