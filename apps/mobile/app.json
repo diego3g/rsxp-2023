@@ -2,7 +2,7 @@
   "expo": {
     "name": "rsxp",
     "slug": "rsxp-2023",
-    // "owner": "rocketseat",
+    "owner": "rocketseat",
     "version": "1.0.0",
     "scheme": "rsxp",
     "orientation": "portrait",
