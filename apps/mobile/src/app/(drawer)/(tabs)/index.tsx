@@ -1,54 +1,54 @@
-import { Alert, SafeAreaView, ScrollView, Text, View } from 'react-native'
-import { Ticket as TicketIcon, Question, Hash } from 'phosphor-react-native'
-import * as WebBrowser from 'expo-web-browser'
-import { useState } from 'react'
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { AxiosError } from 'axios'
-import { z } from 'zod'
-import { useAuth as useClerkAuth } from '@clerk/clerk-expo'
+import { Alert, SafeAreaView, ScrollView, Text, View } from "react-native";
+import { Ticket as TicketIcon, Question, Hash } from "phosphor-react-native";
+import * as WebBrowser from "expo-web-browser";
+import { useState } from "react";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { AxiosError } from "axios";
+import { z } from "zod";
+import { useAuth as useClerkAuth } from "@clerk/clerk-expo";
 
-import RocketImg from '@/assets/rocket.svg'
-import { Button } from '@/components/Button'
-import { theme } from '@/theme/index'
-import { LinkButton } from '@/components/LinkButton'
-import { Input } from '@/components/Input'
-import { useWarmUpBrowser } from '@/hooks/useWarmUpBrowser'
-import { api } from '@/lib/axios'
-import { useAuth } from '@/hooks/useAuth'
+import RocketImg from "@/assets/rocket.svg";
+import { Button } from "@/components/Button";
+import { theme } from "@/theme/index";
+import { LinkButton } from "@/components/LinkButton";
+import { Input } from "@/components/Input";
+import { useWarmUpBrowser } from "@/hooks/useWarmUpBrowser";
+import { api } from "@/lib/axios";
+import { useAuth } from "@/hooks/useAuth";
 
 export default function Ticket() {
-  const [ticketNumber, setTicketNumber] = useState('')
-  const { getToken } = useClerkAuth()
-  const { signInOrSignUpWithOAuth, user } = useAuth()
-  const queryClient = useQueryClient()
+  const [ticketNumber, setTicketNumber] = useState("");
+  const { getToken } = useClerkAuth();
+  const { signInOrSignUpWithOAuth, user } = useAuth();
+  const queryClient = useQueryClient();
 
-  useWarmUpBrowser()
+  useWarmUpBrowser();
 
   const { data: ticket, isInitialLoading: isLoadingTicket } = useQuery(
-    ['ticket'],
+    ["ticket"],
     async () => {
-      const token = await getToken()
+      const token = await getToken();
 
-      const response = await api.get('/tickets/link', {
+      const response = await api.get("/tickets/link", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      })
+      });
 
-      return response.data.ticket
+      return response.data.ticket;
     },
     {
       enabled: !!user,
-    },
-  )
+    }
+  );
 
   const { mutateAsync: linkTicket } = useMutation(
     async (ticketNumber: string) => {
-      const token = await getToken()
+      const token = await getToken();
 
       try {
         await api.post(
-          '/tickets/link',
+          "/tickets/link",
           {
             ticketNumber,
           },
@@ -56,94 +56,94 @@ export default function Ticket() {
             headers: {
               Authorization: `Bearer ${token}`,
             },
-          },
-        )
+          }
+        );
 
-        setTicketNumber('')
+        setTicketNumber("");
 
-        queryClient.setQueryData(['ticket'], {
+        queryClient.setQueryData(["ticket"], {
           symplaTicketNumber: ticketNumber,
           clerkUserId: user?.id,
-        })
+        });
       } catch (err) {
         if (err instanceof AxiosError) {
-          Alert.alert('Eita!', err.response?.data.message)
+          Alert.alert("Eita!", err.response?.data.message);
         } else {
-          console.error(err)
+          console.error(err);
         }
       }
-    },
-  )
+    }
+  );
 
   const { mutateAsync: unlinkTicket } = useMutation(
     async () => {
-      const token = await getToken()
+      const token = await getToken();
 
       try {
-        await api.delete('/tickets/link', {
+        await api.delete("/tickets/link", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        })
+        });
       } catch (err) {
         if (err instanceof AxiosError) {
-          Alert.alert('Eita!', err.response?.data.message)
+          Alert.alert("Eita!", err.response?.data.message);
         } else {
-          console.error(err)
+          console.error(err);
         }
       }
     },
     {
       onSuccess() {
-        queryClient.setQueryData(['ticket'], null)
+        queryClient.setQueryData(["ticket"], null);
       },
-    },
-  )
+    }
+  );
 
   function handleUnlinkTicket() {
-    unlinkTicket()
+    unlinkTicket();
   }
 
   async function handleLinkTicket() {
     if (!user) {
-      await signInOrSignUpWithOAuth()
+      await signInOrSignUpWithOAuth();
     }
 
     const { success } = z
       .string()
       .regex(/[A-Z0-9a-z]{4}-[A-Z0-9a-z]{2}-[A-Z0-9a-z]{4}/)
-      .safeParse(ticketNumber)
+      .safeParse(ticketNumber);
 
     if (success) {
-      linkTicket(ticketNumber)
+      linkTicket(ticketNumber);
     } else {
       Alert.alert(
-        'Formato inválido',
-        'O número do ticket possui o seguinte formato: XXXX-XX-XXXX',
-      )
+        "Formato inválido",
+        "O número do ticket possui o seguinte formato: XXXX-XX-XXXX"
+      );
     }
   }
 
   function handleBuyTicket() {
     WebBrowser.openBrowserAsync(
-      'https://www.sympla.com.br/evento/rs-xp-2023/1893142?token=f08c7ccb161f96342112fdb9fdaee1b6',
+      "https://www.sympla.com.br/evento/rs-xp-2023/1893142?token=f08c7ccb161f96342112fdb9fdaee1b6",
       {
         presentationStyle: WebBrowser.WebBrowserPresentationStyle.POPOVER,
         controlsColor: theme.colors.rocketseat.light,
         toolbarColor: theme.colors.gray[900],
-      },
-    )
+      }
+    );
   }
 
   function handleFindTicketNumberLink() {
     WebBrowser.openBrowserAsync(
-      'https://ajuda.sympla.com.br/hc/pt-br/articles/115005427246-Como-fa%C3%A7o-para-ter-acesso-aos-meus-ingressos-',
+      "https://ajuda.sympla.com.br/hc/pt-br/articles/115005427246-Como-fa%C3%A7o-para-ter-acesso-aos-meus-ingressos-",
       {
         presentationStyle: WebBrowser.WebBrowserPresentationStyle.POPOVER,
         controlsColor: theme.colors.rocketseat.light,
         toolbarColor: theme.colors.gray[900],
-      },
-    )
+      }
+    );
   }
 
   return (
@@ -225,5 +225,5 @@ export default function Ticket() {
         </View>
       </SafeAreaView>
     </ScrollView>
-  )
+  );
 }
